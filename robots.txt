@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://canyon-explore-tours.com/sitemap.xml

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Wunschtermin, Personenzahl und Tour angeben und eine vorbereitete Anfrage per WhatsApp oder E-Mail an Tanja und Mario senden.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <title>Private JGA Canyoning-Tour unverbindlich anfragen</title>
+    <link rel="canonical" href="https://canyon-explore-tours.com/tour-anfragen/">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Private JGA Canyoning-Tour unverbindlich anfragen">
+    <meta property="og:description" content="Wunschtermin, Personenzahl und Tour angeben und eine vorbereitete Anfrage per WhatsApp oder E-Mail an Tanja und Mario senden.">
+    <meta property="og:url" content="https://canyon-explore-tours.com/tour-anfragen/">
+    <meta property="og:site_name" content="Canyon Explore Tours">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Private JGA Canyoning-Tour unverbindlich anfragen">
+    <meta name="twitter:description" content="Wunschtermin, Personenzahl und Tour angeben und eine vorbereitete Anfrage per WhatsApp oder E-Mail an Tanja und Mario senden.">
+    <link rel="stylesheet" href="../assets/css/image-placeholders.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/logos/Canyon-Explore_Logo_light_blackBack_32.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="../assets/logos/Canyon-Explore_Logo_light_blackBack_256.png">
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://canyon-explore-tours.com/#organization","name":"Canyon Explore Tours","legalName":"Dr. Mario Zinßer Services","url":"https://canyon-explore-tours.com/","email":"info@canyon-explore-tours.com","logo":"https://canyon-explore-tours.com/assets/logos/Canyon-Explore_Logo_light_blackBack_256.png","address":{"@type":"PostalAddress","streetAddress":"Hausbachstraße 7","postalCode":"88171","addressLocality":"Weiler im Allgäu","addressCountry":"DE"},"founder":{"@type":"Person","name":"Dr. Mario Zinßer"},"sameAs":["https://canyon-explore.com/"]},{"@type":"WebPage","@id":"https://canyon-explore-tours.com/tour-anfragen/#webpage","url":"https://canyon-explore-tours.com/tour-anfragen/","name":"Private JGA Canyoning-Tour unverbindlich anfragen","description":"Wunschtermin, Personenzahl und Tour angeben und eine vorbereitete Anfrage per WhatsApp oder E-Mail an Tanja und Mario senden.","inLanguage":"de-DE","isPartOf":{"@id":"https://canyon-explore-tours.com/#website"},"about":{"@id":"https://canyon-explore-tours.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://canyon-explore-tours.com/"},{"@type":"ListItem","position":2,"name":"Tour anfragen","item":"https://canyon-explore-tours.com/tour-anfragen/"}]}]}</script>
+  </head>
+  <body>
+    <header><a href="../">Canyon Explore Tours</a><nav aria-label="Hauptnavigation"><a href="../jga-canyoning/">JGA Canyoning</a><a href="../touren/">Touren</a><a href="../sicherheit-guides/">Sicherheit &amp; Guides</a><a href="../jga-ratgeber/">JGA-Ratgeber</a><a href="../faq/">FAQ</a><a href="../tour-anfragen/">Tour anfragen</a></nav></header>
+    <nav aria-label="Brotkrumen"><a href="../">Startseite</a> &gt; <span aria-current="page">Tour anfragen</span></nav>
+    <main>
+      <h1>Eure private JGA Canyoning-Tour anfragen</h1><p>Die Anfrage ist unverbindlich. Eine Buchung entsteht erst mit unserer schriftlichen Bestätigung. Während unserer üblichen Erreichbarkeit antworten wir meistens innerhalb von 10 Minuten.</p>
+      <form id="tour-anfrage">
+        <p><label for="datum">Wunschtermin</label><br><input id="datum" name="datum" type="date"></p>
+        <p><label for="alternativdatum">Alternativtermin</label><br><input id="alternativdatum" name="alternativdatum" type="date"></p>
+        <p><label for="personen">Wie viele Personen seid ihr ungefähr?</label><br><input id="personen" name="personen" type="number" min="1" inputmode="numeric"></p>
+        <p><label for="tour">Welche Tour interessiert euch?</label><br><select id="tour" name="tour"><option value="Bitte empfehlt uns eine Tour">Bitte empfehlt uns eine Tour</option><option>Merlins World, 100 € p. P.</option><option>Kangaroo Jump, 100 € p. P.</option><option>Kobelache Intensiv, 150 € p. P.</option><option>Tessin, Preis auf Anfrage</option></select></p>
+        <p><label for="name">Dein Name</label><br><input id="name" name="name" autocomplete="name"></p>
+        <p><label for="nachricht">Was sollten wir über eure Gruppe wissen?</label><br><textarea id="nachricht" name="nachricht" rows="5" placeholder="Zum Beispiel sportliche Erfahrung, Unsicherheiten, gesundheitliche Hinweise oder flexible Termine."></textarea></p>
+        <p><button type="button" id="whatsapp-anfrage">Per WhatsApp anfragen</button></p><p><button type="button" id="email-anfrage">Alternativ per E-Mail anfragen</button></p>
+      </form>
+      <p>Ab 10 zahlenden Teilnehmern fährt Braut oder Bräutigam gratis mit. Kobelache-Treffpunkt: <a href="https://maps.app.goo.gl/WkbpBEmY4GgzDDPn7">Wanderparkplatz Gütle</a>.</p>
+      <script>
+        const form = document.getElementById('tour-anfrage');
+        const createMessage = () => { const data = new FormData(form); return 'Hallo Tanja und Mario, wir möchten eine private JGA Canyoning-Tour anfragen.\n\nName: ' + (data.get('name') || '-') + '\nWunschtermin: ' + (data.get('datum') || '-') + '\nAlternativtermin: ' + (data.get('alternativdatum') || '-') + '\nUngefähre Personenzahl: ' + (data.get('personen') || '-') + '\nTour: ' + data.get('tour') + '\nWeitere Infos: ' + (data.get('nachricht') || '-'); };
+        document.getElementById('whatsapp-anfrage').addEventListener('click', () => { window.location.href = 'https://wa.me/499999999999?text=' + encodeURIComponent(createMessage()); });
+        document.getElementById('email-anfrage').addEventListener('click', () => { window.location.href = 'mailto:info@canyon-explore-tours.com?subject=' + encodeURIComponent('Anfrage private JGA Canyoning-Tour') + '&body=' + encodeURIComponent(createMessage()); });
+      </script>
+    </main>
+    <footer><p>Canyon Explore Tours: private Canyoning-Touren für Junggesellenabschiede in Dornbirn und Vorarlberg.</p><p><a href="https://wa.me/499999999999">WhatsApp: +49 9999 99 99 99</a> · <a href="mailto:info@canyon-explore-tours.com">info@canyon-explore-tours.com</a></p><nav aria-label="Rechtliches"><a href="../rechtliches/impressum/">Impressum</a><a href="../rechtliches/datenschutz/">Datenschutz</a><a href="../rechtliches/agb/">AGB</a><a href="../rechtliches/widerruf-storno/">Widerruf &amp; Storno</a></nav></footer>
+    <a href="https://wa.me/499999999999" aria-label="Canyon Explore Tours per WhatsApp kontaktieren">WhatsApp</a>
+  </body>
+</html>

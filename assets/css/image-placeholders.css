@@ -1,0 +1,36 @@
+figure {
+  margin: 2rem 0;
+  border: 2px dashed #64748b;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+figure div[role="img"] {
+  display: grid;
+  min-height: 14rem;
+  place-items: center;
+  padding: 1.5rem;
+  color: #334155;
+  background: linear-gradient(135deg, #e0f2fe, #dcfce7);
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+}
+
+figcaption {
+  padding: 1rem 1.25rem;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.guide-association-logo {
+  margin: 1.5rem 0;
+}
+
+.guide-association-logo img {
+  width: 6rem;
+  max-width: 100%;
+  height: auto;
+}
