@@ -33,13 +33,13 @@
 
 - Primärer Kontaktweg ist WhatsApp, E-Mail ist die sichtbare Alternative.
 - Kontakt-E-Mail: info@canyon-explore-tours.com.
-- Die Telefonnummer ist derzeit ein Platzhalter und muss vor Veröffentlichung ersetzt werden.
+- Telefon und WhatsApp: +49 160 97 93 95 77.
 - Treffpunkt für Kobelache-Touren: Wanderparkplatz Gütle, Dornbirn.
 
 ## Bilder und Vertrauen
 
 - Bildplatzhalter bleiben beschriftet, bis eigene, hochwertige und rechtlich nutzbare Fotos vorliegen.
-- Persönliche Fotos von Tanja Sürig und Mario Zinßer sowie das offizielle Zeichen der Tiroler Schluchtenführer sind zentrale Vertrauenselemente.
+- Persönliche Fotos von Tanja und Mario sowie das offizielle Zeichen der Tiroler Schluchtenführer sind zentrale Vertrauenselemente.
 
 ## Rechtliches
 
