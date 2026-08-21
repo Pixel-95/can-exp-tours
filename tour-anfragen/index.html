@@ -25,22 +25,22 @@
     <header><a href="../">Canyon Explore Tours</a><nav aria-label="Hauptnavigation"><a href="../jga-canyoning/">JGA Canyoning</a><a href="../touren/">Touren</a><a href="../sicherheit-guides/">Sicherheit &amp; Guides</a><a href="../jga-ratgeber/">JGA-Ratgeber</a><a href="../faq/">FAQ</a><a href="../tour-anfragen/">Tour anfragen</a></nav></header>
     <nav aria-label="Brotkrumen"><a href="../">Startseite</a> &gt; <span aria-current="page">Tour anfragen</span></nav>
     <main>
-      <h1>Eure private JGA Canyoning-Tour anfragen</h1><p>Die Anfrage ist unverbindlich. Eine Buchung entsteht erst mit unserer schriftlichen Bestätigung. Während unserer üblichen Erreichbarkeit antworten wir meistens innerhalb von 10 Minuten.</p>
+      <h1>Eure private JGA Canyoning-Tour anfragen</h1><p>Die Anfrage ist unverbindlich. Nach unserer schriftlichen Buchungsbestätigung wird eure Buchung mit Eingang der 10%-Anzahlung verbindlich. Während unserer üblichen Erreichbarkeit antworten wir meistens innerhalb von 10 Minuten.</p>
       <form id="tour-anfrage">
-        <p><label for="datum">Wunschtermin</label><br><input id="datum" name="datum" type="date"></p>
-        <p><label for="alternativdatum">Alternativtermin</label><br><input id="alternativdatum" name="alternativdatum" type="date"></p>
-        <p><label for="personen">Wie viele Personen seid ihr ungefähr?</label><br><input id="personen" name="personen" type="number" min="1" inputmode="numeric"></p>
-        <p><label for="tour">Welche Tour interessiert euch?</label><br><select id="tour" name="tour"><option value="Bitte empfehlt uns eine Tour">Bitte empfehlt uns eine Tour</option><option>Merlins World, 100 € p. P.</option><option>Kangaroo Jump, 100 € p. P.</option><option>Kobelache Intensiv, 150 € p. P.</option><option>Tessin, Preis auf Anfrage</option></select></p>
-        <p><label for="name">Dein Name</label><br><input id="name" name="name" autocomplete="name"></p>
-        <p><label for="nachricht">Was sollten wir über eure Gruppe wissen?</label><br><textarea id="nachricht" name="nachricht" rows="5" placeholder="Zum Beispiel sportliche Erfahrung, Unsicherheiten, gesundheitliche Hinweise oder flexible Termine."></textarea></p>
+        <p><label for="datum">Wunschtermin</label><br><input id="datum" name="datum" type="date" required></p>
+        <p><label for="tour">Welche Tour interessiert euch?</label><br><select id="tour" name="tour" required><option value="Bitte empfehlt uns eine Tour">Noch unsicher, bitte Tour empfehlen</option><option>Merlins World, 100 € p. P.</option><option>Kangaroo Jump, 100 € p. P.</option><option>Kobelache Intensiv, 150 € p. P.</option><option>Tessin, Preis auf Anfrage</option></select></p>
+        <p><label for="personen">Ungefähre Teilnehmerzahl</label><br><input id="personen" name="personen" type="number" min="1" inputmode="numeric" required></p>
+        <p><label for="nachricht">Sonstiges</label><br><textarea id="nachricht" name="nachricht" rows="5" placeholder="Zum Beispiel sportliche Erfahrung, Höhenangst oder besondere Wünsche."></textarea></p>
+        <p><label for="name">Dein Name</label><br><input id="name" name="name" autocomplete="name" required></p>
         <p><button type="button" id="whatsapp-anfrage">Per WhatsApp anfragen</button></p><p><button type="button" id="email-anfrage">Alternativ per E-Mail anfragen</button></p>
       </form>
       <p>Ab 10 zahlenden Teilnehmern fährt Braut oder Bräutigam gratis mit. Kobelache-Treffpunkt: <a href="https://maps.app.goo.gl/WkbpBEmY4GgzDDPn7">Wanderparkplatz Gütle</a>.</p>
       <script>
         const form = document.getElementById('tour-anfrage');
-        const createMessage = () => { const data = new FormData(form); return 'Hallo Tanja und Mario, wir möchten eine private JGA Canyoning-Tour anfragen.\n\nName: ' + (data.get('name') || '-') + '\nWunschtermin: ' + (data.get('datum') || '-') + '\nAlternativtermin: ' + (data.get('alternativdatum') || '-') + '\nUngefähre Personenzahl: ' + (data.get('personen') || '-') + '\nTour: ' + data.get('tour') + '\nWeitere Infos: ' + (data.get('nachricht') || '-'); };
-        document.getElementById('whatsapp-anfrage').addEventListener('click', () => { window.location.href = 'https://wa.me/4916097939577?text=' + encodeURIComponent(createMessage()); });
-        document.getElementById('email-anfrage').addEventListener('click', () => { window.location.href = 'mailto:info@canyon-explore-tours.com?subject=' + encodeURIComponent('Anfrage private JGA Canyoning-Tour') + '&body=' + encodeURIComponent(createMessage()); });
+        const createMessage = () => { const data = new FormData(form); return 'Hallo Tanja und Mario,\n\nich möchte eine private JGA-Canyoning-Tour anfragen.\n\nWunschtermin: ' + data.get('datum') + '\nWunsch-Tour: ' + data.get('tour') + '\nUngefähre Teilnehmerzahl: ' + data.get('personen') + '\nSonstiges: ' + (data.get('nachricht') || '-') + '\n\nIch freue mich über eure Rückmeldung.\nLiebe Grüße und bis bald\n' + data.get('name'); };
+        const validateForm = () => form.reportValidity();
+        document.getElementById('whatsapp-anfrage').addEventListener('click', () => { if (validateForm()) window.location.href = 'https://wa.me/4916097939577?text=' + encodeURIComponent(createMessage()); });
+        document.getElementById('email-anfrage').addEventListener('click', () => { if (validateForm()) window.location.href = 'mailto:info@canyon-explore-tours.com?subject=' + encodeURIComponent('Anfrage private JGA Canyoning-Tour') + '&body=' + encodeURIComponent(createMessage()); });
       </script>
     </main>
     <footer><p>Canyon Explore Tours: private Canyoning-Touren für Junggesellenabschiede in Dornbirn und Vorarlberg.</p><p><a href="https://wa.me/4916097939577">WhatsApp: +49 160 97 93 95 77</a> · <a href="mailto:info@canyon-explore-tours.com">info@canyon-explore-tours.com</a></p><nav aria-label="Rechtliches"><a href="../rechtliches/impressum/">Impressum</a><a href="../rechtliches/datenschutz/">Datenschutz</a><a href="../rechtliches/agb/">AGB</a><a href="../rechtliches/widerruf-storno/">Widerruf &amp; Storno</a></nav></footer>
