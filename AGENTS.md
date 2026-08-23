@@ -24,7 +24,7 @@
 
 - Hauptnavigation: Canyoning, Touren, Guides & Sicherheit, FAQ, Tour anfragen.
 - Unter Canyoning liegen: Was ist Canyoning?, Canyoning als JGA-Idee, Kobelache und Dornbirn, Ablauf der Canyoning-Tour und Canyoning-Checkliste.
-- Unter Guides & Sicherheit liegen: Unsere Guides sowie Sicherheit und Ausrüstung.
+- Unter Guides & Sicherheit liegen: Das sind wir sowie Sicherheit und Ausrüstung.
 - Rechtliche Seiten werden ausschließlich im Footer verlinkt.
 - Alte URLs aus `jga-canyoning`, `jga-ratgeber` und `sicherheit-guides` bleiben nur als technische Weiterleitungen erhalten und dürfen nicht wieder als eigenständige Inhaltsseiten oder in der Sitemap geführt werden.
 
