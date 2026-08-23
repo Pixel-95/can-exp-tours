@@ -20,14 +20,24 @@
 - Kangaroo Jump ist die Empfehlung für die meisten JGAs.
 - Preise: Merlins World 100 € p. P., Kangaroo Jump 100 € p. P., Kobelache Intensiv 150 € p. P., Tessin Preis auf Anfrage.
 
+## Verbindliche Seitenstruktur
+
+- Hauptnavigation: Canyoning, Touren, Guides & Sicherheit, FAQ, Tour anfragen.
+- Unter Canyoning liegen: Was ist Canyoning?, Canyoning als JGA-Idee, Kobelache und Dornbirn, Ablauf der Canyoning-Tour und Canyoning-Checkliste.
+- Unter Guides & Sicherheit liegen: Unsere Guides sowie Sicherheit und Ausrüstung.
+- Rechtliche Seiten werden ausschließlich im Footer verlinkt.
+- Alte URLs aus `jga-canyoning`, `jga-ratgeber` und `sicherheit-guides` bleiben nur als technische Weiterleitungen erhalten und dürfen nicht wieder als eigenständige Inhaltsseiten oder in der Sitemap geführt werden.
+
 ## Verkaufsargumente
 
 - Jede Gruppe erhält eine Privattour ohne fremde Teilnehmer.
 - Komplette Ausrüstung inklusive spezieller Canyoning-Schuhe ist enthalten.
 - Fotos und Videos sind enthalten.
 - Nach der Tour sind ein kleiner Snack sowie Bier, Radler oder Limo enthalten. Alkohol wird ausschließlich nach der Tour ausgegeben.
-- Ab 10 zahlenden Teilnehmern fährt die Braut oder der Bräutigam kostenlos mit.
-- Keine öffentliche maximale Gruppengröße nennen. Bei größeren Gruppen auf den Einsatz mehrerer Guides hinweisen.
+- Wenn mindestens 10 andere Teilnehmer zahlen, kommt die Braut oder der Bräutigam zusätzlich kostenlos mit. Diese Bedingung muss überall inhaltlich eindeutig formuliert sein.
+- Gruppengröße, interne Guide-Planung und der Einsatz zusätzlicher Guides nicht öffentlich thematisieren.
+- Das Sorglos-Paket ab dem Treffpunkt ist ein zentrales Verkaufsargument: enthalten sind Ausrüstung einschließlich Canyoning-Schuhe, Transfer, Führung, Fotos, Videos sowie Snack und Getränke nach der Tour. Gäste bringen nur Badekleidung, Handtuch und Wechselkleidung mit.
+- Tessin ist eine individuell planbare Spezialtour, aber kein SEO-Schwerpunkt. Anreise und Übernachtung werden nicht als Leistung oder Planungsbestandteil beworben.
 
 ## Kontakt und Conversion
 

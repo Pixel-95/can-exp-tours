@@ -18,6 +18,13 @@ figure div[role="img"] {
   text-align: center;
 }
 
+figure > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #eef0f2;
+}
+
 figcaption {
   padding: 1rem 1.25rem;
   color: #475569;

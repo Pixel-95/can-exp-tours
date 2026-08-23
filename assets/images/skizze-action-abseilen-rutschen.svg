@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title">
+  <title id="title">Skizze einer Gruppe beim Abseilen und Rutschen</title><rect width="1200" height="675" fill="#eef0f2"/>
+  <path d="M0 0h390l-70 675H0Zm1200 0H790l80 675h330Z" fill="#d5dadd" stroke="#48545b" stroke-width="9"/>
+  <path d="M320 675c90-140 190-205 310-170 120 35 180 25 260-35v205Z" fill="#b8e3f2" stroke="#267b9b" stroke-width="9"/>
+  <path d="M300 40c170 165 115 315 265 455" fill="none" stroke="#6d4c41" stroke-width="9"/>
+  <g stroke="#263238" stroke-width="9" stroke-linecap="round" fill="#ffb44c"><circle cx="500" cy="345" r="27"/><path d="M500 372v94m0-61-45 28m45-28 42 34m-42 27-38 63m38-63 35 62"/></g>
+  <g stroke="#263238" stroke-width="8" stroke-linecap="round" fill="#ffb44c"><circle cx="690" cy="450" r="23"/><path d="M690 473l55 66m-25-36 47-5m-47 5-5 48m30-12 62 29"/></g>
+  <g fill="#ffb44c" stroke="#263238" stroke-width="7"><circle cx="930" cy="452" r="20"/><circle cx="995" cy="445" r="20"/><circle cx="1060" cy="455" r="20"/></g>
+  <g stroke="#263238" stroke-width="7" stroke-linecap="round"><path d="M930 472v72m0-40-25 20m25-20 25 20m-25 20-20 35m20-35 20 35"/><path d="M995 465v78m0-43-25 20m25-20 25 20m-25 23-20 35m20-35 20 35"/><path d="M1060 475v70m0-40-25 20m25-20 25 20m-25 20-20 35m20-35 20 35"/></g>
+</svg>

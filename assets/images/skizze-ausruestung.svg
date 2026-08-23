@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title">
+  <title id="title">Skizze vollständiger Canyoning-Ausrüstung</title><rect width="1200" height="675" fill="#eef0f2"/>
+  <g stroke="#263238" stroke-width="9" stroke-linejoin="round">
+    <path d="M145 180 250 125l105 55-55 110v235H200V290Z" fill="#5fa9bf"/><path d="m200 525-35 100m135-100 35 100" fill="none"/>
+    <path d="M430 205q85-100 170 0v88H430Z" fill="#ffb44c"/><path d="M445 260h140"/>
+    <path d="M720 155v310m-85-220 85 70 85-70M665 465l55-65 55 65" fill="none"/><circle cx="720" cy="120" r="45" fill="#ffb44c"/>
+    <path d="M875 210q105-70 175 10l-45 115-115-20Z" fill="#d46c5f"/><path d="M905 345c65-25 125 5 135 75-50 35-110 35-165 5Z" fill="#263238"/><path d="M920 455c65-25 125 5 135 75-50 35-110 35-165 5Z" fill="#263238"/>
+  </g>
+  <path d="M90 625h1020" stroke="#94a0a6" stroke-width="8" stroke-linecap="round"/>
+</svg>
