@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title">
-  <title id="title">Skizze von Tanja und Mario in Guide-Ausrüstung</title><rect width="1200" height="675" fill="#eef0f2"/>
-  <path d="M0 540 210 255l135 190 165-280 175 290 160-230 185 300 170-190v340H0Z" fill="#d5dadd" stroke="#48545b" stroke-width="9"/>
-  <path d="M515 190c-20 150-55 265-20 420h210c32-160-18-270-25-420Z" fill="#b8e3f2" stroke="#267b9b" stroke-width="9"/>
-  <g stroke="#263238" stroke-width="11" stroke-linecap="round"><circle cx="455" cy="255" r="55" fill="#ffb44c"/><path d="M455 310v185m0-105-85 65m85-65 85 65m-85 40-65 105m65-105 65 105"/><circle cx="745" cy="255" r="55" fill="#ffb44c"/><path d="M745 310v185m0-105-85 65m85-65 85 65m-85 40-65 105m65-105 65 105"/></g>
-  <path d="M400 360h110v115H400Zm290 0h110v115H690Z" fill="#5fa9bf" stroke="#263238" stroke-width="9"/><path d="M385 218h140m150 0h140" stroke="#d46c5f" stroke-width="18" stroke-linecap="round"/>
-</svg>
