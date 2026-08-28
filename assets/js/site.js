@@ -67,6 +67,155 @@ if (mobileNavigation) {
   document.addEventListener("touchmove", closeOnOutsideScroll, { capture: true, passive: true });
 }
 
+const reviewList = document.querySelector("#google-reviews-list");
+const reviewData = document.querySelector("#google-reviews-data");
+
+if (reviewList && reviewData) {
+  try {
+    const reviews = JSON.parse(reviewData.textContent);
+    const avatarColors = ["#1a73e8", "#d93025", "#188038", "#9334e6", "#c26401", "#007b83"];
+    const likeIcon = '<svg viewBox="0 0 24 24" focusable="false"><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3m0 11V11m0 11h9.4a2 2 0 0 0 1.95-1.55l1.2-5A2 2 0 0 0 17.6 13H14l.6-4.3A2.1 2.1 0 0 0 12.5 6L7 11" /></svg>';
+    const colorForName = (name) => {
+      const sum = [...name].reduce((total, character) => total + character.codePointAt(0), 0);
+      return avatarColors[sum % avatarColors.length];
+    };
+
+    const reviewCards = reviews.map((review, index) => {
+      const name = typeof review.name === "string" ? review.name.trim() : "Unbekannt";
+      const stackItem = document.createElement("div");
+      const card = document.createElement("article");
+      const header = document.createElement("header");
+      const avatar = document.createElement("span");
+      const author = document.createElement("div");
+      const authorName = document.createElement("h3");
+      const profile = document.createElement("p");
+      const rating = document.createElement("p");
+      const stars = document.createElement("span");
+      const time = document.createElement("span");
+      const text = document.createElement("p");
+      const likes = document.createElement("p");
+      const likeIconElement = document.createElement("span");
+      const likeCount = document.createElement("span");
+
+      stackItem.className = "review-stack-item";
+      stackItem.style.setProperty("--review-index", String(index + 1));
+      stackItem.style.setProperty("--review-stack-offset", `${index * 18}px`);
+      card.className = "google-review";
+      avatar.className = "review-avatar";
+      avatar.textContent = name.charAt(0).toLocaleUpperCase("de-DE");
+      avatar.style.backgroundColor = colorForName(name);
+      avatar.setAttribute("aria-hidden", "true");
+      author.className = "review-author";
+      authorName.textContent = name;
+      profile.className = "review-profile";
+      profile.textContent = typeof review.profile === "string" ? review.profile : "";
+      rating.className = "review-rating";
+      stars.className = "review-stars";
+      stars.textContent = "★★★★★";
+      stars.setAttribute("aria-label", "5 von 5 Sternen");
+      time.textContent = typeof review.time === "string" ? review.time : "";
+      text.className = "review-text";
+      text.textContent = typeof review.text === "string" ? review.text : "";
+      likes.className = "review-likes";
+      likeIconElement.className = "review-like-icon";
+      likeIconElement.setAttribute("aria-hidden", "true");
+      likeIconElement.innerHTML = likeIcon;
+      likeCount.textContent = Number.isFinite(Number(review.likes)) ? String(review.likes) : "0";
+
+      author.append(authorName, profile);
+      header.append(avatar, author);
+      rating.append(stars, time);
+      likes.append(likeIconElement, likeCount);
+      card.append(header, rating, text, likes);
+      stackItem.append(card);
+      return stackItem;
+    });
+
+    const stackStage = document.createElement("div");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let stackLayout = null;
+    let animationFrame = 0;
+
+    stackStage.className = "review-stack-stage";
+    stackStage.append(...reviewCards);
+    reviewList.replaceChildren(stackStage);
+
+    const updateReviewStack = () => {
+      animationFrame = 0;
+      if (!stackLayout || reducedMotion.matches) return;
+
+      const progress = Math.min(
+        stackLayout.totalDistance,
+        Math.max(0, stackLayout.stickTop - reviewList.getBoundingClientRect().top),
+      );
+      const exitDistance = Math.max(0, progress - stackLayout.exitStart);
+
+      reviewCards.forEach((card, index) => {
+        const position = Math.max(stackLayout.finalPositions[index], stackLayout.startPositions[index] - progress) - exitDistance;
+        card.style.transform = `translate3d(0, ${position}px, 0)`;
+      });
+    };
+
+    const scheduleReviewStack = () => {
+      if (animationFrame) return;
+      animationFrame = window.requestAnimationFrame(updateReviewStack);
+    };
+
+    const layoutReviewStack = () => {
+      if (reducedMotion.matches) {
+        stackLayout = null;
+        reviewList.style.height = "";
+        stackStage.style.height = "";
+        reviewCards.forEach((card) => {
+          card.style.transform = "";
+        });
+        return;
+      }
+
+      const listStyles = getComputedStyle(reviewList);
+      const gap = Number.parseFloat(listStyles.getPropertyValue("--review-gap")) || 48;
+      const stickTop = Number.parseFloat(listStyles.getPropertyValue("--reviews-stick-top")) || 92;
+      const heights = reviewCards.map((card) => card.offsetHeight);
+      const startPositions = [];
+      const finalPositions = reviewCards.map((card, index) => index * 18);
+      let nextPosition = 0;
+
+      heights.forEach((height) => {
+        startPositions.push(nextPosition);
+        nextPosition += height + gap;
+      });
+
+      const exitStart = Math.max(...startPositions.map((position, index) => position - finalPositions[index]), 0);
+      const stageHeight = Math.max(...heights.map((height, index) => height + finalPositions[index]));
+      const exitDistance = 0;
+
+      stackLayout = {
+        exitStart,
+        finalPositions,
+        startPositions,
+        stickTop,
+        totalDistance: exitStart + exitDistance,
+      };
+      stackStage.style.height = `${Math.ceil(stageHeight)}px`;
+      reviewList.style.height = `${Math.ceil(stageHeight + stackLayout.totalDistance)}px`;
+      updateReviewStack();
+    };
+
+    window.addEventListener("scroll", scheduleReviewStack, { passive: true });
+    window.addEventListener("resize", layoutReviewStack);
+    reducedMotion.addEventListener("change", layoutReviewStack);
+
+    if ("ResizeObserver" in window) {
+      const reviewResizeObserver = new ResizeObserver(layoutReviewStack);
+      reviewCards.forEach((card) => reviewResizeObserver.observe(card));
+    }
+
+    window.requestAnimationFrame(layoutReviewStack);
+  } catch (error) {
+    console.error("Google-Bewertungen konnten nicht gelesen werden.", error);
+  }
+}
+
 const currentPath = window.location.pathname;
 document.querySelectorAll(".desktop-nav a, .mobile-nav a").forEach((link) => {
   const linkPath = new URL(link.href, window.location.origin).pathname;

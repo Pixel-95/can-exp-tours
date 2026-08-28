@@ -75,7 +75,7 @@ COMPARISON = '''<div class="comparison-scroll" role="region" aria-label="Touren 
             <div><img src="/assets/icons/price.png" alt="" /><span>Preis</span></div>
           </div>
           <article class="tour-plan">
-            <header><p class="plan-kicker">Für Einsteiger</p><h3>Merlins World</h3><p>Ruhiger Einstieg ins Canyoning mit abwechslungsreichen Elementen.</p><a href="/touren/merlins-world/">Tour ansehen</a></header>
+            <header><p class="plan-kicker">Für Einsteiger</p><h3>Merlins World</h3><p>Optimaler Einstieg ins Canyoning mit abwechslungsreichen Elementen.</p><a href="/touren/merlins-world/">Tour ansehen</a></header>
             <dl><div><dt>Schwierigkeit</dt><dd>2 von 5</dd></div><div><dt>Dauer</dt><dd>ca. 4 Stunden</dd></div><div><dt>Abseilen</dt><dd>bis 12 m</dd></div><div><dt>Sprünge</dt><dd>bis 7 m, freiwillig</dd></div><div><dt>Rutschen</dt><dd>bis 5 m</dd></div><div><dt>Schwimmen</dt><dd>bis 10 m</dd></div><div><dt>Preis</dt><dd><strong>100 € p. P.</strong></dd></div></dl>
           </article>
           <article class="tour-plan tour-plan-featured">
