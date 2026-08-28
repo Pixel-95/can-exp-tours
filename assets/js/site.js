@@ -86,6 +86,7 @@ if (benefitJourney) {
   const desktopBenefits = window.matchMedia("(min-width: 981px)");
   const mobileBenefits = window.matchMedia("(max-width: 980px)");
   const reducedBenefitMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const mobileBenefitTransitionStep = 0.6;
   let benefitDistance = 0;
   let benefitScrollStart = 0;
   let benefitFrame = 0;
@@ -124,13 +125,17 @@ if (benefitJourney) {
 
     if (mobileBenefits.matches) {
       const transitionCount = Math.max(1, benefitCards.length - 1);
+      const timelineLength = 1 + ((transitionCount - 1) * mobileBenefitTransitionStep);
+      const timelineProgress = progress * timelineLength;
+      const horizontalEntryFactor = 1 / Math.tan(35 * (Math.PI / 180));
       benefitCards.forEach((card, index) => {
-        const cardProgress = index === 0 ? 1 : Math.min(1, Math.max(0, (progress * transitionCount) - (index - 1)));
+        const transitionStart = (index - 1) * mobileBenefitTransitionStep;
+        const cardProgress = index === 0 ? 1 : Math.min(1, Math.max(0, timelineProgress - transitionStart));
         const finalX = index === 0 ? 0 : (index % 2 ? 10 : -10);
         const finalY = index * 11;
         const entryDistance = Math.max(card.offsetHeight, window.innerWidth) + 40;
-        const startX = entryDistance * (index % 2 ? -1 : 1);
         const startY = entryDistance;
+        const startX = startY * horizontalEntryFactor * (index % 2 ? -1 : 1);
         const x = startX + ((finalX - startX) * cardProgress);
         const y = startY + ((finalY - startY) * cardProgress);
         card.style.transform = `translate3d(${x}px, ${y}px, 0)`;
@@ -171,17 +176,21 @@ if (benefitJourney) {
       benefitStage.style.setProperty("--benefit-stage-height", `${Math.ceil(cardHeight + stackSpace)}px`);
     }
 
-    benefitDistance = desktopBenefits.matches
-      ? Math.max(0, benefitTrack.scrollWidth - benefitStage.clientWidth)
-      : Math.round(cardHeight * 0.78 * Math.max(0, benefitCards.length - 1));
+    if (desktopBenefits.matches) {
+      benefitDistance = Math.max(0, benefitTrack.scrollWidth - benefitStage.clientWidth);
+    } else {
+      const transitionCount = Math.max(1, benefitCards.length - 1);
+      const timelineLength = 1 + ((transitionCount - 1) * mobileBenefitTransitionStep);
+      benefitDistance = Math.round(cardHeight * 0.6 * timelineLength);
+    }
 
     const headingStyle = getComputedStyle(benefitHeading);
     const headingLineHeight = Number.parseFloat(headingStyle.lineHeight) || (Number.parseFloat(headingStyle.fontSize) * 1.1);
     const headingGap = mobileBenefits.matches ? 20 : 32;
     const visibleHeadingHeight = mobileBenefits.matches ? headingLineHeight : benefitHeading.offsetHeight;
-    const centeredStageTop = Math.round((viewportHeight - cardHeight) / 2);
+    const targetStageTop = Math.round((viewportHeight * 0.45) - (cardHeight / 2));
     const minimumStageTop = Math.ceil(headerHeight + visibleHeadingHeight + headingGap);
-    const stageViewportTop = Math.max(headerHeight + 8, centeredStageTop, minimumStageTop);
+    const stageViewportTop = Math.max(headerHeight + 8, targetStageTop, minimumStageTop);
     const headingViewportTop = stageViewportTop - headingGap - benefitHeading.offsetHeight;
     const headingOffset = headingViewportTop - headerHeight;
     const stageOffset = stageViewportTop - headerHeight;

@@ -20,8 +20,8 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; color: var(--ink); background: var(--paper); font-family: Arial, "Segoe UI", sans-serif; font-size: 17px; line-height: 1.6; text-rendering: optimizeLegibility; }
+html { max-width: 100%; overflow-x: hidden; overflow-x: clip; overscroll-behavior-x: none; scroll-behavior: smooth; }
+body { max-width: 100%; margin: 0; overflow-x: clip; overscroll-behavior-x: none; color: var(--ink); background: var(--paper); font-family: Arial, "Segoe UI", sans-serif; font-size: 17px; line-height: 1.6; text-rendering: optimizeLegibility; }
 img, svg { max-width: 100%; }
 a { color: var(--ink); overflow-wrap: anywhere; text-decoration-color: #a8aaad; text-decoration-thickness: 1px; text-underline-offset: .2em; }
 a:hover { color: var(--accent); }
@@ -118,7 +118,6 @@ textarea { resize: vertical; }
 .guide-detail { display: inline-block; width: calc(50% - 14px); margin-right: 20px; vertical-align: top; }
 
 /* Home */
-.page-home { overflow-x: clip; }
 .page-home .site-main { padding-top: clamp(64px,8vw,108px); }
 .page-home .hero { margin-top: 0; text-align: center; }
 .eyebrow { display: inline-flex; margin: 0 0 22px; padding: 8px 14px; border-radius: 999px; color: var(--accent-dark); background: var(--accent-soft); font-size: 13px; font-weight: 700; }
@@ -150,7 +149,7 @@ textarea { resize: vertical; }
 .app-store-icons a:hover { opacity: .72; }
 .page-home .hero + section { margin-top: var(--space-content); }
 .page-home .hero + .benefit-journey { margin-top: max(0px, calc(var(--space-content) - var(--benefit-heading-offset, 0px))); }
-.benefit-journey { display: block !important; margin-top: var(--space-section); }
+.benefit-journey { display: block !important; margin-top: var(--space-section); touch-action: pan-y pinch-zoom; }
 .benefit-scroll-scene { position: sticky; top: var(--benefit-scene-top, 74px); height: var(--benefit-scene-height, calc(100dvh - 74px)); overflow: visible; }
 .benefit-scroll-scene > h2 { position: absolute; z-index: 2; top: var(--benefit-heading-top, 24px); left: 0; width: 100%; margin: 0; }
 .benefit-scroll-area { position: relative; }
@@ -207,7 +206,7 @@ textarea { resize: vertical; }
 .page-home main > ul li { margin: 0; padding: 20px 0; border-bottom: 1px solid var(--line); }
 
 /* Gemini-like comparison */
-.comparison-scroll { width: 100vw; margin-top: var(--space-content); margin-inline: calc(50% - 50vw); overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-width: none; }
+.comparison-scroll { width: 100vw; margin-top: var(--space-content); margin-inline: calc(50% - 50vw); overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y pinch-zoom; }
 .comparison-scroll::-webkit-scrollbar { display: none; }
 .comparison-grid { display: grid; min-width: 1220px; padding: 1px max(20px, calc((100vw - var(--content)) / 2)) 8px; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: stretch; }
 .content-icon { width: 42px; height: 42px; object-fit: contain; }
