@@ -86,7 +86,7 @@ if (benefitJourney) {
   const desktopBenefits = window.matchMedia("(min-width: 981px)");
   const mobileBenefits = window.matchMedia("(max-width: 980px)");
   const reducedBenefitMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const mobileBenefitTransitionStep = 0.6;
+  const mobileBenefitTransitionStep = 0.58;
   let benefitDistance = 0;
   let benefitScrollStart = 0;
   let benefitFrame = 0;
@@ -117,7 +117,6 @@ if (benefitJourney) {
     if (reducedBenefitMotion.matches || !benefitDistance) return;
 
     const progress = Math.min(1, Math.max(0, (window.scrollY - benefitScrollStart) / benefitDistance));
-
     if (desktopBenefits.matches) {
       benefitTrack.style.transform = `translate3d(${-benefitDistance * progress}px, 0, 0)`;
       return;
@@ -378,6 +377,82 @@ document.querySelectorAll(".desktop-nav a, .mobile-nav a").forEach((link) => {
     link.setAttribute("aria-current", "page");
   }
 });
+
+const tourComparisons = [...document.querySelectorAll(".tour-comparison")];
+
+if (tourComparisons.length) {
+  const comparisonHeader = document.querySelector(".site-header");
+  const comparisonReleaseGap = 50;
+  let comparisonReleaseFrame = 0;
+
+  const updateComparisonRelease = () => {
+    comparisonReleaseFrame = 0;
+    const releaseBoundary = window.innerHeight - comparisonReleaseGap;
+
+    tourComparisons.forEach((comparison) => {
+      const bounds = comparison.getBoundingClientRect();
+      const stickyTop = Number.parseFloat(getComputedStyle(comparison).getPropertyValue("--comparison-sticky-top")) || 74;
+      const isReleased = bounds.bottom <= releaseBoundary;
+
+      comparison.classList.toggle("is-sticky-released", isReleased);
+      comparison.classList.toggle("is-sticky-active", bounds.top <= stickyTop && !isReleased);
+    });
+  };
+
+  const scheduleComparisonRelease = () => {
+    if (!comparisonReleaseFrame) comparisonReleaseFrame = window.requestAnimationFrame(updateComparisonRelease);
+  };
+
+  const updateComparisonLayout = () => {
+    const stickyTop = comparisonHeader?.getBoundingClientRect().height || 74;
+
+    tourComparisons.forEach((comparison) => {
+      const comparisonHead = comparison.querySelector(".comparison-head");
+      if (!comparisonHead) return;
+
+      comparison.classList.remove("is-sticky-released");
+      const comparisonHeadHeight = comparisonHead.getBoundingClientRect().height;
+      const comparisonHeight = comparison.getBoundingClientRect().height;
+      const releaseTop = Math.max(0, comparisonHeight - window.innerHeight + comparisonReleaseGap + stickyTop);
+
+      comparison.style.setProperty("--comparison-sticky-top", `${stickyTop}px`);
+      comparison.style.setProperty("--comparison-head-height", `${comparisonHeadHeight}px`);
+      comparison.style.setProperty("--comparison-release-top", `${releaseTop}px`);
+    });
+
+    updateComparisonRelease();
+  };
+
+  tourComparisons.forEach((comparison) => {
+    const headingScroll = comparison.querySelector(".comparison-head-scroll");
+    const bodyScroll = comparison.querySelector(".comparison-scroll");
+    if (!headingScroll || !bodyScroll) return;
+
+    let syncingScroll = false;
+
+    const syncHorizontalScroll = (source, target) => {
+      if (syncingScroll) return;
+      syncingScroll = true;
+      target.scrollLeft = source.scrollLeft;
+      window.requestAnimationFrame(() => {
+        syncingScroll = false;
+      });
+    };
+
+    headingScroll.addEventListener("scroll", () => syncHorizontalScroll(headingScroll, bodyScroll), { passive: true });
+    bodyScroll.addEventListener("scroll", () => syncHorizontalScroll(bodyScroll, headingScroll), { passive: true });
+    headingScroll.scrollLeft = bodyScroll.scrollLeft;
+  });
+
+  if (comparisonHeader && "ResizeObserver" in window) {
+    const comparisonHeaderObserver = new ResizeObserver(updateComparisonLayout);
+    comparisonHeaderObserver.observe(comparisonHeader);
+  }
+
+  window.addEventListener("scroll", scheduleComparisonRelease, { passive: true });
+  window.addEventListener("resize", updateComparisonLayout);
+  window.requestAnimationFrame(updateComparisonLayout);
+}
 
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
   const revealItems = document.querySelectorAll("main > section, main > figure, main > h2, main > article > figure");
