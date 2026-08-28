@@ -72,6 +72,113 @@ if (mobileNavigation) {
   document.addEventListener("scroll", closeOnOutsideScroll, { capture: true, passive: true });
 }
 
+const benefitJourney = document.querySelector(".benefit-journey");
+
+if (benefitJourney) {
+  const benefitScrollArea = benefitJourney.querySelector(".benefit-scroll-area");
+  const benefitScene = benefitJourney.querySelector(".benefit-scroll-scene");
+  const benefitStage = benefitJourney.querySelector(".benefit-scroll-stage");
+  const benefitTrack = benefitJourney.querySelector(".benefit-track");
+  const benefitCards = [...benefitJourney.querySelectorAll(".benefit-card")];
+  const desktopBenefits = window.matchMedia("(min-width: 981px)");
+  const mobileBenefits = window.matchMedia("(max-width: 980px)");
+  const reducedBenefitMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let benefitDistance = 0;
+  let benefitStickyTop = 0;
+  let benefitFrame = 0;
+
+  const updateBenefitTrack = () => {
+    benefitFrame = 0;
+    if (reducedBenefitMotion.matches || !benefitScrollArea || !benefitTrack) {
+      benefitTrack.style.transform = "";
+      benefitCards.forEach((card) => {
+        card.style.transform = "";
+      });
+      return;
+    }
+
+    if (!benefitDistance) {
+      benefitTrack.style.transform = "";
+      return;
+    }
+
+    const scrollAreaTop = benefitScrollArea.getBoundingClientRect().top + window.scrollY;
+    const progress = Math.min(1, Math.max(0, (window.scrollY - (scrollAreaTop - benefitStickyTop)) / benefitDistance));
+
+    if (desktopBenefits.matches) {
+      benefitTrack.style.transform = `translate3d(${-benefitDistance * progress}px, 0, 0)`;
+      return;
+    }
+
+    if (mobileBenefits.matches) {
+      const transitionCount = Math.max(1, benefitCards.length - 1);
+      benefitCards.forEach((card, index) => {
+        const cardProgress = index === 0 ? 1 : Math.min(1, Math.max(0, (progress * transitionCount) - (index - 1)));
+        const finalX = index === 0 ? 0 : (index % 2 ? 10 : -10);
+        const finalY = index * 11;
+        const startX = (card.offsetHeight || benefitStage.offsetHeight) * (index % 2 ? -1.06 : 1.06);
+        const x = startX + ((finalX - startX) * cardProgress);
+        const yPercent = (1 - cardProgress) * 106;
+        card.style.transform = `translate3d(${x}px, calc(${yPercent}% + ${finalY}px), 0)`;
+      });
+    }
+  };
+
+  const scheduleBenefitTrack = () => {
+    if (!benefitFrame) benefitFrame = window.requestAnimationFrame(updateBenefitTrack);
+  };
+
+  const layoutBenefitJourney = () => {
+    if (!benefitScrollArea || !benefitScene || !benefitStage || !benefitTrack) return;
+
+    if (reducedBenefitMotion.matches) {
+      benefitDistance = 0;
+      benefitScrollArea.style.height = "";
+      benefitScene.style.removeProperty("--benefit-sticky-top");
+      benefitStage.style.removeProperty("--benefit-stage-height");
+      benefitStage.style.removeProperty("--benefit-image-height");
+      benefitTrack.style.transform = "";
+      benefitCards.forEach((card) => {
+        card.style.removeProperty("height");
+        card.style.transform = "";
+      });
+      return;
+    }
+
+    if (mobileBenefits.matches) {
+      benefitStage.style.removeProperty("--benefit-stage-height");
+      benefitCards.forEach((card) => card.style.removeProperty("height"));
+      const imageHeight = benefitCards[0]?.clientWidth || 0;
+      benefitStage.style.setProperty("--benefit-image-height", `${imageHeight}px`);
+      const highestText = Math.max(...benefitCards.map((card) => card.querySelector("div")?.scrollHeight || 0));
+      const highestCard = highestText + imageHeight;
+      const stackSpace = Number.parseFloat(getComputedStyle(benefitStage).getPropertyValue("--benefit-stack-space")) || 0;
+      benefitCards.forEach((card) => card.style.setProperty("height", `${highestCard}px`));
+      benefitStage.style.setProperty("--benefit-stage-height", `${Math.ceil(highestCard + stackSpace)}px`);
+    } else {
+      benefitStage.style.removeProperty("--benefit-stage-height");
+      benefitStage.style.removeProperty("--benefit-image-height");
+      benefitCards.forEach((card) => card.style.removeProperty("height"));
+    }
+
+    benefitDistance = desktopBenefits.matches
+      ? Math.max(0, benefitTrack.scrollWidth - benefitStage.clientWidth)
+      : Math.round(benefitStage.offsetHeight * 0.78 * Math.max(0, benefitCards.length - 1));
+    benefitStickyTop = Math.max(96, Math.round((window.innerHeight - benefitScene.offsetHeight) / 2));
+    benefitScene.style.setProperty("--benefit-sticky-top", `${benefitStickyTop}px`);
+    benefitScrollArea.style.height = `${Math.ceil(benefitScene.offsetHeight + benefitDistance)}px`;
+    updateBenefitTrack();
+  };
+
+  window.addEventListener("scroll", scheduleBenefitTrack, { passive: true });
+  window.addEventListener("resize", layoutBenefitJourney);
+  desktopBenefits.addEventListener("change", layoutBenefitJourney);
+  mobileBenefits.addEventListener("change", layoutBenefitJourney);
+  reducedBenefitMotion.addEventListener("change", layoutBenefitJourney);
+  window.addEventListener("load", layoutBenefitJourney, { once: true });
+  layoutBenefitJourney();
+}
+
 const reviewList = document.querySelector("#google-reviews-list");
 const reviewData = document.querySelector("#google-reviews-data");
 
