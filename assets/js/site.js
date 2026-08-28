@@ -3,7 +3,13 @@ const mobileNavigation = document.querySelector(".mobile-nav");
 
 if (mobileNavigation) {
   const navigationToggle = mobileNavigation.querySelector(":scope > summary");
+  const navigationLabel = navigationToggle?.querySelector(".mobile-menu-label");
   const navigationPanel = mobileNavigation.querySelector(".mobile-menu-panel");
+  const replayEnterAnimation = (element, className) => {
+    element.classList.remove(className);
+    void element.offsetWidth;
+    element.classList.add(className);
+  };
   const navigationBackdrop = document.createElement("div");
   navigationBackdrop.className = "mobile-menu-backdrop";
   navigationBackdrop.setAttribute("aria-hidden", "true");
@@ -21,8 +27,14 @@ if (mobileNavigation) {
   };
 
   mobileNavigation.addEventListener("toggle", () => {
-    if (navigationToggle) {
-      navigationToggle.textContent = mobileNavigation.open ? "Menü schließen" : "Menü öffnen";
+    if (navigationToggle && navigationLabel) {
+      const label = mobileNavigation.open ? "Menü schließen" : "Menü öffnen";
+      navigationLabel.textContent = label;
+      navigationToggle.setAttribute("aria-label", label);
+    }
+
+    if (mobileNavigation.open && navigationPanel) {
+      replayEnterAnimation(navigationPanel, "is-entering");
     }
   });
 
@@ -48,23 +60,16 @@ if (mobileNavigation) {
     if (window.innerWidth > MOBILE_BREAKPOINT) closeMobileNavigation();
   });
 
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (window.innerWidth <= MOBILE_BREAKPOINT) closeMobileNavigation();
-    },
-    { passive: true },
-  );
-
   const closeOnOutsideScroll = (event) => {
     if (!mobileNavigation.open) return;
-    if (event.target instanceof Node && navigationPanel?.contains(event.target)) return;
+    if (navigationPanel && event.composedPath().includes(navigationPanel)) return;
 
     closeMobileNavigation();
   };
 
   document.addEventListener("wheel", closeOnOutsideScroll, { capture: true, passive: true });
   document.addEventListener("touchmove", closeOnOutsideScroll, { capture: true, passive: true });
+  document.addEventListener("scroll", closeOnOutsideScroll, { capture: true, passive: true });
 }
 
 const reviewList = document.querySelector("#google-reviews-list");
