@@ -337,8 +337,7 @@ textarea { resize: vertical; }
 .page-tours main > section figure { grid-column: 1; grid-row: 1 / 7; margin: 0; border-radius: 0; }
 .page-tours main > section figure picture, .page-tours main > section figure img { height: 100%; }
 .page-tours main > section figure img { object-fit: cover; }
-.page-tours main > section:nth-of-type(even) figure { grid-column: 2; }
-.page-tours main > section:nth-of-type(even) > *:not(figure) { grid-column: 1; }
+.page-tours main > section .tour-card-action { margin-top: 32px; margin-bottom: 48px; }
 .element-cards { display: grid; margin-top: var(--space-content); gap: var(--space-card); }
 .split-card { display: grid; overflow: hidden; min-height: 440px; padding: 0; grid-template-columns: 1fr 1fr; border: 0; border-radius: var(--radius-large); background: var(--surface); }
 .split-card > figure { height: 100%; margin: 0; border-radius: 0; }
@@ -671,10 +670,11 @@ textarea { resize: vertical; }
   .tour-plan header > p:not(.plan-price) { font-size: 15px; }
   .tour-plan dl > div { padding-inline: 22px; }
   .page-tours main > section, .split-card { grid-template-columns: 1fr; }
-  .page-tours main > section figure, .page-tours main > section:nth-of-type(even) figure, .page-tours main > section > *:not(figure), .page-tours main > section:nth-of-type(even) > *:not(figure) { grid-column: 1; grid-row: auto; }
+  .page-tours main > section figure, .page-tours main > section > *:not(figure) { grid-column: 1; grid-row: auto; }
   .page-tours main > section > *:not(figure) { margin-right: 24px; margin-left: 24px; }
   .page-tours main > section > h2 { margin-top: 28px; }
-  .page-tours main > section figure { aspect-ratio: 4 / 3; }
+  .page-tours main > section .tour-card-action { grid-row: 4; margin-top: 28px; margin-bottom: 28px; }
+  .page-tours main > section figure { grid-row: 5; aspect-ratio: 4 / 3; }
   .split-card picture, .split-card-reverse picture, .split-card > div, .split-card-reverse > div, .home-story > figure, .home-story--reverse > figure, .home-story--reverse > div { grid-column: 1; grid-row: auto; }
   .split-card picture { aspect-ratio: 4 / 3; }
   .split-card > div { padding: 30px 26px 36px; }
