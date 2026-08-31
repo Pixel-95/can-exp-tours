@@ -691,6 +691,8 @@ textarea { resize: vertical; }
   .tour-hero-lead { margin-left: 0; text-align: left; }
   .tour-hero .hero-actions { justify-content: flex-start; }
   .tour-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tour-facts > div { display: flex; padding-inline: 12px; justify-content: center; gap: 12px; }
+  .tour-facts > div > div { min-width: 0; }
   .tour-facts > div:nth-child(3n) { border-right: 1px solid var(--line); }
   .tour-facts > div:nth-child(2n) { border-right: 0; }
   .tour-story { min-height: 0; grid-template-columns: 1fr; }
