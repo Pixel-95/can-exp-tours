@@ -16,7 +16,7 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Private JGA Canyoning-Tour unverbindlich anfragen" />
     <meta name="twitter:description" content="Wunschtermin, Personenzahl und Tour angeben und eine vorbereitete Anfrage per WhatsApp oder E-Mail an Tanja und Mario senden." />
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260831-131" />
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260831-132" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/logos/Canyon-Explore_Logo_light_blackBack_32.png" />
     <link rel="apple-touch-icon" sizes="256x256" href="../assets/logos/Canyon-Explore_Logo_light_blackBack_256.png" />
     <script type="application/ld+json">
@@ -72,7 +72,7 @@
         ]
       }
     </script>
-    <script src="/assets/js/site.js?v=20260831-45" defer></script>
+    <script src="/assets/js/site.js?v=20260831-46" defer></script>
     <script src="/assets/js/touch-feedback.js?v=20260831-1" defer></script>
   </head>
   <body class="page-request">
@@ -190,9 +190,16 @@
         if ([...tourSelect.options].some((option) => option.value === requestedTour)) {
           tourSelect.value = requestedTour;
         }
+        const formatRequestedDate = (value) => {
+          if (!value) return "";
+          const [year, month, day] = String(value).split("-").map(Number);
+          const date = new Date(year, month - 1, day);
+          const weekdays = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
+          return weekdays[date.getDay()] + ", " + String(day).padStart(2, "0") + "." + String(month).padStart(2, "0") + "." + String(year).slice(-2);
+        };
         const createMessage = () => {
           const data = new FormData(form);
-          return "Hallo Tanja und Mario,\n\nich möchte eine private Canyoning-Tour anfragen.\n\nWunschtermin: " + data.get("datum") + "\nWunsch-Tour: " + data.get("tour") + "\nUngefähre Teilnehmerzahl: " + data.get("personen") + "\nSonstiges: " + (data.get("nachricht") || "-") + "\n\nIch freue mich über eure Rückmeldung.\nLiebe Grüße und bis bald\n" + data.get("name");
+          return "Hallo Tanja und Mario,\n\nich möchte eine private Canyoning-Tour anfragen.\n\nWunschtermin: " + formatRequestedDate(data.get("datum")) + "\nWunsch-Tour: " + data.get("tour") + "\nUngefähre Teilnehmerzahl: " + data.get("personen") + "\nSonstiges: " + (data.get("nachricht") || "-") + "\n\nIch freue mich über eure Rückmeldung.\nLiebe Grüße und bis bald\n" + data.get("name");
         };
         const validateForm = () => form.reportValidity();
         dateInput.addEventListener("click", () => {

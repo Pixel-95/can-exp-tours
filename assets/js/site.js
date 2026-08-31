@@ -278,14 +278,23 @@ if (tourComparisons.length) {
     const bodyScroll = comparison.querySelector(".comparison-scroll");
     if (!headingScroll || !bodyScroll) return;
 
-    let syncingScroll = false;
+    let scrollSyncFrame = 0;
+    let pendingScrollSync = null;
 
     const syncHorizontalScroll = (source, target) => {
-      if (syncingScroll) return;
-      syncingScroll = true;
-      target.scrollLeft = source.scrollLeft;
-      window.requestAnimationFrame(() => {
-        syncingScroll = false;
+      if (Math.abs(target.scrollLeft - source.scrollLeft) < .5) return;
+
+      pendingScrollSync = { source, target };
+      if (scrollSyncFrame) return;
+
+      scrollSyncFrame = window.requestAnimationFrame(() => {
+        scrollSyncFrame = 0;
+        const sync = pendingScrollSync;
+        pendingScrollSync = null;
+
+        if (sync && Math.abs(sync.target.scrollLeft - sync.source.scrollLeft) >= .5) {
+          sync.target.scrollLeft = sync.source.scrollLeft;
+        }
       });
     };
 
