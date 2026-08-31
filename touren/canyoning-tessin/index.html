@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="de">
   <head>
     <meta charset="utf-8" />
@@ -16,7 +16,7 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Canyoning Tessin für euren JGA | Private Tour" />
     <meta name="twitter:description" content="Private JGA Canyoning-Tour im Tessin: Granitschluchten, smaragdgrüne Becken und individuelle Auswahl nach Erfahrung und Bedingungen." />
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260828-111" />
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260831-126" />
     <link rel="icon" type="image/png" sizes="32x32" href="../../assets/logos/Canyon-Explore_Logo_light_blackBack_32.png" />
     <link rel="apple-touch-icon" sizes="256x256" href="../../assets/logos/Canyon-Explore_Logo_light_blackBack_256.png" />
     <script type="application/ld+json">
@@ -29,6 +29,7 @@
             "name": "Canyon Explore Tours",
             "legalName": "Dr. Mario Zinßer Services",
             "url": "https://canyon-explore-tours.com/",
+            "areaServed": [{ "@type": "Place", "name": "Kobelache bei Dornbirn" }, { "@type": "City", "name": "Dornbirn" }, { "@type": "AdministrativeArea", "name": "Vorarlberg" }],
             "email": "info@canyon-explore-tours.com",
             "telephone": "+4916097939577",
             "logo": "https://canyon-explore-tours.com/assets/logos/Canyon-Explore_Logo_light_blackBack_256.png",
@@ -81,15 +82,18 @@
             "provider": {
               "@id": "https://canyon-explore-tours.com/#organization"
             },
-            "areaServed": ["Dornbirn", "Vorarlberg", "Deutschland", "Österreich", "Schweiz"],
+            "areaServed": [{ "@type": "AdministrativeArea", "name": "Kanton Tessin" }, { "@type": "Country", "name": "Schweiz" }],
             "serviceType": "Private geführte Canyoning-Tour für Junggesellenabschiede"
           }
         ]
       }
     </script>
-    <script src="/assets/js/site.js?v=20260828-41" defer></script>
+    <script src="/assets/js/site.js?v=20260831-45" defer></script>
+    <script src="/assets/js/touch-feedback.js?v=20260831-1" defer></script>
+    <script src="/assets/js/tour-view-transition.js?v=20260831-5" defer></script>
+    <script src="/assets/js/scroll-card-journey.js?v=20260831-3" defer></script>
   </head>
-  <body class="page-content">
+  <body class="page-content page-tour-detail">
     <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
     <header class="site-header">
       <div class="nav-shell">
@@ -173,40 +177,12 @@
     </header>
     <a class="mobile-parent-link" href="/touren/">‹ Touren</a>
     <main class="site-main" id="inhalt">
-      <h1>Canyoning Tessin: euer privates JGA-Abenteuer</h1>
-      <p>
-        <strong>Schwierigkeit 4 von 5 · Dauer je nach Tour · Preis auf Anfrage · Private Tour</strong>
-      </p>
-      <p>Das Tessin ist die Spezialoption für sehr ambitionierte, sehr fitte JGAs, die ein außergewöhnliches Erlebnis suchen. Heller Granit, klares Wasser, tief ausgeschliffene Becken und sogar Heli-Canyoning machen jede individuell gewählte Schlucht besonders.</p>
-
-      <h2>Tour auf einen Blick</h2>
-      <dl>
-        <dt>Gesamtdauer</dt>
-        <dd>je nach gewählter Tour</dd>
-        <dt>Abseilen</dt>
-        <dd>bis 80 Meter möglich</dd>
-        <dt>Rutschen</dt>
-        <dd>bis 20 Meter möglich</dd>
-        <dt>Springen</dt>
-        <dd>bis 20 Meter möglich</dd>
-        <dt>Schwimmstrecken</dt>
-        <dd>bis 50 Meter möglich</dd>
-        <dt>Voraussetzungen</dt>
-        <dd>Sehr gute Fitness, sichere Schwimmkenntnisse, Trittsicherheit und hohe Bereitschaft für ein anspruchsvolles Abenteuer</dd>
-      </dl>
-      <h2>Was wir vorab mit euch klären</h2>
-      <ul>
-        <li>Wunschtermin und ungefähre Personenzahl.</li>
-        <li>Canyoning-Erfahrung, Fitness und Erwartungen.</li>
-        <li>Geeigneter Canyon und Alternativen bei veränderten Bedingungen.</li>
-      </ul>
-
-      <figure class="media-card">
-        <picture><img src="/assets/fotos/editiert/tessin_1-960.webp" srcset="/assets/fotos/editiert/tessin_1-640.webp 640w, /assets/fotos/editiert/tessin_1-960.webp 960w, /assets/fotos/editiert/tessin_1-1440.webp 1440w" sizes="(max-width: 680px) calc(100vw - 32px), (max-width: 1220px) calc(100vw - 40px), 1180px" width="1440" height="1080" alt="Private JGA Canyoning-Tour im Tessin" loading="lazy" /></picture>
-      </figure>
-      <h2>Euer Sorglos-Paket</h2>
-      <p>Die genannten Maximalwerte sind je nach ausgewählter Schlucht möglich, aber kein Standardversprechen für jede Tour. Den genauen Ablauf, Treffpunkt und Preis klären wir im direkten Kontakt. Ab dem vereinbarten Treffpunkt organisieren wir Ausrüstung, Führung, Tour, Fotos, Videos sowie Snack und Getränke nach der Tour. Kommt bitte bereits in Badekleidung zum Treffpunkt und bringt Handtuch, Wechselkleidung sowie eine Trinkflasche mit Wasser für vor und nach der Tour mit.</p>
-      <p><a href="../../tour-anfragen/">Tessin individuell anfragen</a></p>
+      <section class="tour-hero"><div class="tour-hero-copy"><h1>Tessin: Euer außergewöhnliches JGA-Canyoning-Abenteuer</h1><p class="tour-hero-lead">Heller Granit, klares Wasser und individuell ausgewählte Schluchten für sehr ambitionierte Gruppen.</p><div class="hero-actions"><a href="/tour-anfragen/?tour=Tessin">Tessin individuell anfragen</a><a href="#tessin-entdecken">Tour entdecken</a></div></div><figure class="tour-hero-media"><picture><img src="/assets/fotos/editiert/wasserfall_zeigen-960.webp" srcset="/assets/fotos/editiert/wasserfall_zeigen-640.webp 640w, /assets/fotos/editiert/wasserfall_zeigen-960.webp 960w, /assets/fotos/editiert/wasserfall_zeigen-1440.webp 1440w" sizes="(max-width: 760px) calc(100vw - 32px), 1280px" alt="Wasserfall beim Canyoning im Tessin" fetchpriority="high" /></picture></figure></section>
+      <section class="tour-facts-section"><div class="tour-section-heading"><h2>Alles, was ihr wissen müsst</h2></div><dl class="tour-facts"><div><img src="/assets/icons/difficulty.png" alt="" /><div><dt>Schwierigkeit</dt><dd>4 von 5</dd></div></div><div><img src="/assets/icons/duration.png" alt="" /><div><dt>Dauer</dt><dd>je nach Tour</dd></div></div><div><img src="/assets/icons/abseilen.png" alt="" /><div><dt>Abseilen</dt><dd>bis 80 m</dd></div></div><div><img src="/assets/icons/jump.png" alt="" /><div><dt>Springen</dt><dd>bis 20 m</dd></div></div><div><img src="/assets/icons/slide.png" alt="" /><div><dt>Rutschen</dt><dd>bis 20 m</dd></div></div><div><img src="/assets/icons/swim.png" alt="" /><div><dt>Schwimmen</dt><dd>bis 50 m</dd></div></div></dl><p class="tour-facts-note">Preis und genauer Ablauf auf Anfrage, passend zu Schlucht, Erfahrung und Bedingungen.</p></section>
+      <section class="tour-story" id="tessin-entdecken"><figure><picture><img src="/assets/fotos/editiert/abseilen_1-960.webp" srcset="/assets/fotos/editiert/abseilen_1-640.webp 640w, /assets/fotos/editiert/abseilen_1-960.webp 960w, /assets/fotos/editiert/abseilen_1-1440.webp 1440w" sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Abseilen beim Canyoning im Tessin" loading="lazy" /></picture></figure><div><h2>Eine Schlucht, die zur Gruppe passt.</h2><p>Das Tessin ist keine Standardtour. Wir wählen Canyon und Ablauf passend zu Erfahrung, Fitness und den aktuellen Bedingungen aus.</p></div></section>
+      <section class="tour-story tour-story-reverse"><figure><picture><img src="/assets/fotos/editiert/abseilen_2-960.webp" srcset="/assets/fotos/editiert/abseilen_2-640.webp 640w, /assets/fotos/editiert/abseilen_2-960.webp 960w, /assets/fotos/editiert/abseilen_2-1440.webp 1440w" sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Canyoning im Tessin" loading="lazy" /></picture></figure><div><h2>Für sehr ambitionierte Gruppen.</h2><p>Gute Fitness, sichere Schwimmkenntnisse und Trittsicherheit sind die Grundlage für dieses besondere Abenteuer.</p></div></section>
+      <section class="benefit-journey tour-card-journey" data-card-journey><div class="benefit-scroll-area" data-card-scroll-area><div class="benefit-scroll-scene" data-card-scroll-scene><h2 data-card-heading>Klickt euch durch die Schlucht</h2><div class="benefit-scroll-stage" data-card-scroll-stage><div class="benefit-track" data-card-track><article class="benefit-card" data-card-journey-item><picture><img src="/assets/fotos/editiert/tessin_1-960.webp" srcset="/assets/fotos/editiert/tessin_1-640.webp 640w, /assets/fotos/editiert/tessin_1-960.webp 960w, /assets/fotos/editiert/tessin_1-1440.webp 1440w" sizes="(max-width: 980px) calc(100vw - 64px), 400px" alt="Canyoning im Tessin" loading="lazy" /></picture><div><h3>Granit und klares Wasser</h3><p>Die Schluchten im Tessin schaffen eine außergewöhnliche Kulisse.</p></div></article><article class="benefit-card" data-card-journey-item><picture><img src="/assets/fotos/editiert/tessin_2-960.webp" srcset="/assets/fotos/editiert/tessin_2-640.webp 640w, /assets/fotos/editiert/tessin_2-960.webp 960w, /assets/fotos/editiert/tessin_2-1440.webp 1440w" sizes="(max-width: 980px) calc(100vw - 64px), 400px" alt="Canyoning im Tessin" loading="lazy" /></picture><div><h3>Jeder Canyon anders</h3><p>Wir stimmen die Tour auf eure Gruppe und die Bedingungen ab.</p></div></article><article class="benefit-card" data-card-journey-item><picture><img src="/assets/fotos/editiert/tessin_3-960.webp" srcset="/assets/fotos/editiert/tessin_3-640.webp 640w, /assets/fotos/editiert/tessin_3-960.webp 960w, /assets/fotos/editiert/tessin_3-1440.webp 1440w" sizes="(max-width: 980px) calc(100vw - 64px), 400px" alt="Canyoning im Tessin" loading="lazy" /></picture><div><h3>Natürliches Abenteuer</h3><p>Wasser, Fels und Tiefe machen jeden Abschnitt besonders.</p></div></article><article class="benefit-card" data-card-journey-item><picture><img src="/assets/fotos/editiert/tessin_4-960.webp" srcset="/assets/fotos/editiert/tessin_4-640.webp 640w, /assets/fotos/editiert/tessin_4-960.webp 960w, /assets/fotos/editiert/tessin_4-1440.webp 1440w" sizes="(max-width: 980px) calc(100vw - 64px), 400px" alt="Canyoning im Tessin" loading="lazy" /></picture><div><h3>Sportlich und konzentriert</h3><p>Die Touren im Tessin verlangen Fitness und Teamgeist.</p></div></article><article class="benefit-card" data-card-journey-item><picture><img src="/assets/fotos/editiert/tessin_5-960.webp" srcset="/assets/fotos/editiert/tessin_5-640.webp 640w, /assets/fotos/editiert/tessin_5-960.webp 960w, /assets/fotos/editiert/tessin_5-1440.webp 1440w" sizes="(max-width: 980px) calc(100vw - 64px), 400px" alt="Canyoning im Tessin" loading="lazy" /></picture><div><h3>Individuell geplant</h3><p>Den genauen Ablauf klären wir direkt mit euch.</p></div></article><article class="benefit-card" data-card-journey-item><picture><img src="/assets/fotos/editiert/tessin_6-960.webp" srcset="/assets/fotos/editiert/tessin_6-640.webp 640w, /assets/fotos/editiert/tessin_6-960.webp 960w, /assets/fotos/editiert/tessin_6-1440.webp 1440w" sizes="(max-width: 980px) calc(100vw - 64px), 400px" alt="Canyoning im Tessin" loading="lazy" /></picture><div><h3>Unvergesslich intensiv</h3><p>Eine Spezialtour für Gruppen, die etwas Außergewöhnliches suchen.</p></div></article></div></div></div></div></section>
+      <section class="tour-cta"><div><h2>Das Tessin beginnt mit einer persönlichen Planung.</h2><p>Wir klären Termin, Erwartungen und die passende Schlucht direkt mit euch.</p></div><div class="hero-actions"><a href="/tour-anfragen/?tour=Tessin">Tessin individuell anfragen</a><a href="/touren/kobelache-intensiv/">Kobelache Intensiv ansehen</a></div></section>
     </main>
     <footer class="site-footer">
       <div class="footer-shell">

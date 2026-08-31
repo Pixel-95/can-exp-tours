@@ -18,7 +18,7 @@
 - Sichtbare Tournamen in Listen: Merlins World, Kangaroo Jump, Kobelache Intensiv, Tessin.
 - Auf der Tessin-Detailseite und in SEO-Metadaten darf „Canyoning Tessin“ verwendet werden.
 - Kangaroo Jump ist die Empfehlung für die meisten JGAs.
-- Preise: Merlins World 100 € p. P., Kangaroo Jump 100 € p. P., Kobelache Intensiv 150 € p. P., Tessin Preis auf Anfrage.
+- Preise: Merlins World 105 € p. P., Kangaroo Jump 100 € p. P., Kobelache Intensiv 150 € p. P., Tessin Preis auf Anfrage.
 
 ## Verbindliche Seitenstruktur
 
@@ -26,7 +26,7 @@
 - Unter Canyoning liegen: Was ist Canyoning?, Canyoning als JGA-Idee, Kobelache und Dornbirn, Ablauf der Canyoning-Tour und Canyoning-Checkliste.
 - Unter Guides & Sicherheit liegen: Das sind wir sowie Sicherheit und Ausrüstung.
 - Rechtliche Seiten werden ausschließlich im Footer verlinkt.
-- Alte URLs aus `jga-canyoning`, `jga-ratgeber` und `sicherheit-guides` bleiben nur als technische Weiterleitungen erhalten und dürfen nicht wieder als eigenständige Inhaltsseiten oder in der Sitemap geführt werden.
+- Die früheren Bereiche `jga-canyoning`, `jga-ratgeber` und `sicherheit-guides` wurden entfernt. Sie dürfen nicht wieder als Inhaltsseiten, Weiterleitungen oder Sitemap-Einträge angelegt werden.
 
 ## Verkaufsargumente
 

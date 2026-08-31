@@ -62,163 +62,13 @@ if (mobileNavigation) {
 
   const closeOnOutsideScroll = (event) => {
     if (!mobileNavigation.open) return;
-    if (navigationPanel && event.composedPath().includes(navigationPanel)) return;
+    if (event.composedPath().includes(mobileNavigation)) return;
 
     closeMobileNavigation();
   };
 
   document.addEventListener("wheel", closeOnOutsideScroll, { capture: true, passive: true });
   document.addEventListener("touchmove", closeOnOutsideScroll, { capture: true, passive: true });
-  document.addEventListener("scroll", closeOnOutsideScroll, { capture: true, passive: true });
-}
-
-const benefitJourney = document.querySelector(".benefit-journey");
-
-if (benefitJourney) {
-  const benefitScrollArea = benefitJourney.querySelector(".benefit-scroll-area");
-  const benefitScene = benefitJourney.querySelector(".benefit-scroll-scene");
-  const benefitHeading = benefitScene?.querySelector("h2");
-  const benefitStage = benefitJourney.querySelector(".benefit-scroll-stage");
-  const benefitTrack = benefitJourney.querySelector(".benefit-track");
-  const benefitCards = [...benefitJourney.querySelectorAll(".benefit-card")];
-  const benefitLayoutRoot = benefitJourney.parentElement;
-  const siteHeader = document.querySelector(".site-header");
-  const desktopBenefits = window.matchMedia("(min-width: 981px)");
-  const mobileBenefits = window.matchMedia("(max-width: 980px)");
-  const reducedBenefitMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const mobileBenefitTransitionStep = 0.58;
-  let benefitDistance = 0;
-  let benefitScrollStart = 0;
-  let benefitFrame = 0;
-  let benefitLayoutFrame = 0;
-
-  const clearBenefitLayout = () => {
-    benefitDistance = 0;
-    benefitScrollStart = 0;
-    benefitJourney.style.removeProperty("--benefit-heading-offset");
-    benefitLayoutRoot?.style.removeProperty("--benefit-exit-tail");
-    benefitScrollArea.style.height = "";
-    benefitScene.style.removeProperty("--benefit-scene-top");
-    benefitScene.style.removeProperty("--benefit-scene-height");
-    benefitScene.style.removeProperty("--benefit-heading-top");
-    benefitScene.style.removeProperty("height");
-    benefitStage.style.removeProperty("--benefit-stage-top");
-    benefitStage.style.removeProperty("--benefit-stage-height");
-    benefitStage.style.removeProperty("--benefit-image-height");
-    benefitTrack.style.transform = "";
-    benefitCards.forEach((card) => {
-      card.style.removeProperty("height");
-      card.style.transform = "";
-    });
-  };
-
-  const updateBenefitTrack = () => {
-    benefitFrame = 0;
-    if (reducedBenefitMotion.matches || !benefitDistance) return;
-
-    const progress = Math.min(1, Math.max(0, (window.scrollY - benefitScrollStart) / benefitDistance));
-    if (desktopBenefits.matches) {
-      benefitTrack.style.transform = `translate3d(${-benefitDistance * progress}px, 0, 0)`;
-      return;
-    }
-
-    if (mobileBenefits.matches) {
-      const transitionCount = Math.max(1, benefitCards.length - 1);
-      const timelineLength = 1 + ((transitionCount - 1) * mobileBenefitTransitionStep);
-      const timelineProgress = progress * timelineLength;
-      const horizontalEntryFactor = 1 / Math.tan(35 * (Math.PI / 180));
-      benefitCards.forEach((card, index) => {
-        const transitionStart = (index - 1) * mobileBenefitTransitionStep;
-        const cardProgress = index === 0 ? 1 : Math.min(1, Math.max(0, timelineProgress - transitionStart));
-        const finalX = index === 0 ? 0 : (index % 2 ? 10 : -10);
-        const finalY = index * 11;
-        const entryDistance = Math.max(card.offsetHeight, window.innerWidth) + 40;
-        const startY = entryDistance;
-        const startX = startY * horizontalEntryFactor * (index % 2 ? -1 : 1);
-        const x = startX + ((finalX - startX) * cardProgress);
-        const y = startY + ((finalY - startY) * cardProgress);
-        card.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      });
-    }
-  };
-
-  const scheduleBenefitTrack = () => {
-    if (!benefitFrame) benefitFrame = window.requestAnimationFrame(updateBenefitTrack);
-  };
-
-  const performBenefitLayout = () => {
-    benefitLayoutFrame = 0;
-    if (!benefitScrollArea || !benefitScene || !benefitHeading || !benefitStage || !benefitTrack) return;
-
-    clearBenefitLayout();
-
-    if (reducedBenefitMotion.matches) {
-      return;
-    }
-
-    const viewportHeight = Math.round(window.visualViewport?.height || window.innerHeight);
-    const headerHeight = siteHeader?.offsetHeight || (mobileBenefits.matches ? 68 : 74);
-    const sceneHeight = Math.max(480, viewportHeight - headerHeight);
-    benefitScene.style.setProperty("--benefit-scene-top", `${headerHeight}px`);
-    benefitScene.style.setProperty("--benefit-scene-height", `${sceneHeight}px`);
-
-    let cardHeight = benefitCards[0]?.offsetHeight || 350;
-
-    if (mobileBenefits.matches) {
-      const imageWidth = benefitCards[0]?.clientWidth || 0;
-      const imageHeight = imageWidth * (11 / 16);
-      benefitStage.style.setProperty("--benefit-image-height", `${imageHeight}px`);
-      const highestText = Math.max(...benefitCards.map((card) => card.querySelector("div")?.scrollHeight || 0));
-      cardHeight = highestText + imageHeight;
-      const stackSpace = Number.parseFloat(getComputedStyle(benefitStage).getPropertyValue("--benefit-stack-space")) || 0;
-      benefitCards.forEach((card) => card.style.setProperty("height", `${cardHeight}px`));
-      benefitStage.style.setProperty("--benefit-stage-height", `${Math.ceil(cardHeight + stackSpace)}px`);
-    }
-
-    if (desktopBenefits.matches) {
-      benefitDistance = Math.max(0, benefitTrack.scrollWidth - benefitStage.clientWidth);
-    } else {
-      const transitionCount = Math.max(1, benefitCards.length - 1);
-      const timelineLength = 1 + ((transitionCount - 1) * mobileBenefitTransitionStep);
-      benefitDistance = Math.round(cardHeight * 0.6 * timelineLength);
-    }
-
-    const headingStyle = getComputedStyle(benefitHeading);
-    const headingLineHeight = Number.parseFloat(headingStyle.lineHeight) || (Number.parseFloat(headingStyle.fontSize) * 1.1);
-    const headingGap = mobileBenefits.matches ? 20 : 32;
-    const visibleHeadingHeight = mobileBenefits.matches ? headingLineHeight : benefitHeading.offsetHeight;
-    const targetStageTop = Math.round((viewportHeight * 0.45) - (cardHeight / 2));
-    const minimumStageTop = Math.ceil(headerHeight + visibleHeadingHeight + headingGap);
-    const stageViewportTop = Math.max(headerHeight + 8, targetStageTop, minimumStageTop);
-    const headingViewportTop = stageViewportTop - headingGap - benefitHeading.offsetHeight;
-    const headingOffset = headingViewportTop - headerHeight;
-    const stageOffset = stageViewportTop - headerHeight;
-    const finalStackOffset = mobileBenefits.matches ? (benefitCards.length - 1) * 11 : 0;
-    const exitTail = sceneHeight - (stageOffset + cardHeight + finalStackOffset);
-
-    benefitJourney.style.setProperty("--benefit-heading-offset", `${headingOffset}px`);
-    benefitLayoutRoot?.style.setProperty("--benefit-exit-tail", `${exitTail}px`);
-    benefitScene.style.setProperty("--benefit-stage-top", `${stageOffset}px`);
-    benefitScene.style.setProperty("--benefit-heading-top", `${headingOffset}px`);
-    benefitScrollArea.style.height = `${Math.ceil(sceneHeight + benefitDistance)}px`;
-
-    const scrollAreaTop = benefitScrollArea.getBoundingClientRect().top + window.scrollY;
-    benefitScrollStart = scrollAreaTop - headerHeight;
-    updateBenefitTrack();
-  };
-
-  const layoutBenefitJourney = () => {
-    if (!benefitLayoutFrame) benefitLayoutFrame = window.requestAnimationFrame(performBenefitLayout);
-  };
-
-  window.addEventListener("scroll", scheduleBenefitTrack, { passive: true });
-  window.addEventListener("resize", layoutBenefitJourney);
-  window.visualViewport?.addEventListener("resize", layoutBenefitJourney);
-  desktopBenefits.addEventListener("change", layoutBenefitJourney);
-  mobileBenefits.addEventListener("change", layoutBenefitJourney);
-  reducedBenefitMotion.addEventListener("change", layoutBenefitJourney);
-  window.addEventListener("load", layoutBenefitJourney, { once: true });
-  layoutBenefitJourney();
 }
 
 const reviewList = document.querySelector("#google-reviews-list");
@@ -452,6 +302,73 @@ if (tourComparisons.length) {
   window.addEventListener("scroll", scheduleComparisonRelease, { passive: true });
   window.addEventListener("resize", updateComparisonLayout);
   window.requestAnimationFrame(updateComparisonLayout);
+}
+
+const animatedDetails = document.querySelectorAll(".faq-item");
+const prefersReducedDetailsMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (animatedDetails.length && !prefersReducedDetailsMotion.matches) {
+  animatedDetails.forEach((details) => {
+    const summary = details.querySelector("summary");
+    const content = details.querySelector(":scope > div, :scope > p");
+    if (!summary || !content) return;
+
+    let animation;
+    let animationFrame;
+    let isClosing = false;
+
+    const reset = (isOpen) => {
+      details.open = isOpen;
+      details.style.height = "";
+      details.style.overflow = "";
+      animation = undefined;
+      isClosing = false;
+    };
+
+    const cancelCurrentAnimation = () => {
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = undefined;
+      }
+      animation?.cancel();
+      animation = undefined;
+    };
+
+    const collapse = (startHeight) => {
+      isClosing = true;
+      details.style.overflow = "hidden";
+      animation = details.animate(
+        { height: [startHeight, `${summary.offsetHeight}px`] },
+        { duration: 240, easing: "cubic-bezier(.2, .8, .2, 1)" },
+      );
+      animation.onfinish = () => reset(false);
+    };
+
+    const expand = (startHeight) => {
+      isClosing = false;
+      details.style.height = startHeight;
+      details.open = true;
+      details.style.overflow = "hidden";
+      animationFrame = window.requestAnimationFrame(() => {
+        animationFrame = undefined;
+        animation = details.animate(
+          { height: [startHeight, `${summary.offsetHeight + content.offsetHeight}px`] },
+          { duration: 300, easing: "cubic-bezier(.2, .8, .2, 1)" },
+        );
+        animation.onfinish = () => reset(true);
+      });
+    };
+
+    summary.addEventListener("click", (event) => {
+      event.preventDefault();
+      const startHeight = `${details.offsetHeight}px`;
+      const shouldExpand = isClosing || !details.open;
+      cancelCurrentAnimation();
+
+      if (shouldExpand) expand(startHeight);
+      else collapse(startHeight);
+    });
+  });
 }
 
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {

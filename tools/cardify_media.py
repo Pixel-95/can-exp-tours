@@ -22,8 +22,6 @@ COPY = {
 pattern = re.compile(r'<figure class="media-card(?P<classes>[^"]*)">(?P<body>.*?)</figure>', re.S)
 
 for page in ROOT.rglob("index.html"):
-    if any(part in {"jga-canyoning", "jga-ratgeber", "sicherheit-guides"} for part in page.parts):
-        continue
     text = page.read_text(encoding="utf-8")
 
     def replace(match: re.Match[str]) -> str:

@@ -126,8 +126,7 @@ def update(path: Path) -> None:
 
 
 if __name__ == "__main__":
-    pages = [p for p in ROOT.rglob("index.html") if not any(part in {"jga-canyoning", "jga-ratgeber", "sicherheit-guides"} for part in p.parts)]
-    for page in pages:
+    for page in ROOT.rglob("index.html"):
         update(page)
 
     tours = ROOT / "touren" / "index.html"

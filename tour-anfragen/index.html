@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="de">
   <head>
     <meta charset="utf-8" />
@@ -16,7 +16,7 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Private JGA Canyoning-Tour unverbindlich anfragen" />
     <meta name="twitter:description" content="Wunschtermin, Personenzahl und Tour angeben und eine vorbereitete Anfrage per WhatsApp oder E-Mail an Tanja und Mario senden." />
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260828-111" />
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260831-126" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/logos/Canyon-Explore_Logo_light_blackBack_32.png" />
     <link rel="apple-touch-icon" sizes="256x256" href="../assets/logos/Canyon-Explore_Logo_light_blackBack_256.png" />
     <script type="application/ld+json">
@@ -72,7 +72,8 @@
         ]
       }
     </script>
-    <script src="/assets/js/site.js?v=20260828-41" defer></script>
+    <script src="/assets/js/site.js?v=20260831-45" defer></script>
+    <script src="/assets/js/touch-feedback.js?v=20260831-1" defer></script>
   </head>
   <body class="page-request">
     <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -156,9 +157,10 @@
         </details>
       </div>
     </header>
+    <a class="mobile-parent-link" href="/">‹ Startseite</a>
     <main class="site-main" id="inhalt">
       <h1>Eure private JGA Canyoning-Tour anfragen</h1>
-      <p>Die Anfrage ist unverbindlich. Ab dem Treffpunkt ist euer Canyoning-Tag als Sorglos-Paket organisiert. Kommt bitte bereits in Badekleidung zum Treffpunkt und bringt Handtuch, Wechselkleidung sowie eine Trinkflasche mit Wasser für vor und nach der Tour mit. Während unserer üblichen Erreichbarkeit antworten wir meistens innerhalb von 10 Minuten.</p>
+      <p>Schreibt uns gern eine kurze Anfrage mit eurem Wunschtermin und der ungefähren Personenzahl. Wenn ihr bei der Tour unsicher seid, wählt einfach „Bitte Tour empfehlen“. Wir melden uns persönlich mit einer passenden Empfehlung und einem transparenten Angebot bei euch.</p>
       <form id="tour-anfrage">
         <p><label for="datum">Wunschtermin</label><br /><input id="datum" name="datum" type="date" required /></p>
         <p>
@@ -180,16 +182,27 @@
           <button type="button" id="email-anfrage">Per E-Mail anfragen</button>
         </p>
       </form>
-      <p>
-        Wenn mindestens 10 andere Teilnehmer zahlen, kommt die Braut oder der Bräutigam zusätzlich kostenlos mit.
-      </p>
       <script>
         const form = document.getElementById("tour-anfrage");
+        const dateInput = document.getElementById("datum");
+        const tourSelect = document.getElementById("tour");
+        const requestedTour = new URLSearchParams(window.location.search).get("tour");
+        if ([...tourSelect.options].some((option) => option.value === requestedTour)) {
+          tourSelect.value = requestedTour;
+        }
         const createMessage = () => {
           const data = new FormData(form);
           return "Hallo Tanja und Mario,\n\nich möchte eine private Canyoning-Tour anfragen.\n\nWunschtermin: " + data.get("datum") + "\nWunsch-Tour: " + data.get("tour") + "\nUngefähre Teilnehmerzahl: " + data.get("personen") + "\nSonstiges: " + (data.get("nachricht") || "-") + "\n\nIch freue mich über eure Rückmeldung.\nLiebe Grüße und bis bald\n" + data.get("name");
         };
         const validateForm = () => form.reportValidity();
+        dateInput.addEventListener("click", () => {
+          if (typeof dateInput.showPicker !== "function") return;
+          try {
+            dateInput.showPicker();
+          } catch {
+            // Browsers without picker access retain their native date control behavior.
+          }
+        });
         document.getElementById("whatsapp-anfrage").addEventListener("click", () => {
           if (validateForm()) window.open("https://wa.me/4916097939577?text=" + encodeURIComponent(createMessage()), "_blank", "noopener,noreferrer");
         });

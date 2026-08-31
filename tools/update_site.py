@@ -206,32 +206,6 @@ def update_html(path: Path) -> None:
         text = re.sub(r'<table>.*?</table>', COMPARISON, text, count=1, flags=re.S)
 
     path.write_text(text, encoding="utf-8", newline="\n")
-
-
-def create_redirects() -> None:
-    redirects = {
-        "jga-canyoning/ablauf/index.html": "/canyoning/ablauf/",
-        "jga-canyoning/kobelache-dornbirn/index.html": "/canyoning/kobelache-dornbirn/",
-        "jga-ratgeber/canyoning-als-jga-idee/index.html": "/canyoning/canyoning-als-jga-idee/",
-        "jga-ratgeber/jga-canyoning-checkliste/index.html": "/canyoning/checkliste/",
-        "jga-ratgeber/jga-vorarlberg/index.html": "/canyoning/kobelache-dornbirn/",
-        "sicherheit-guides/ausruestung/index.html": "/guides-sicherheit/sicherheit-ausruestung/",
-        "sicherheit-guides/fotos-videos/index.html": "/guides-sicherheit/sicherheit-ausruestung/",
-        "sicherheit-guides/sicherheit/index.html": "/guides-sicherheit/sicherheit-ausruestung/",
-        "sicherheit-guides/unsere-guides/index.html": "/guides-sicherheit/das-sind-wir/",
-    }
-    template = '''<!doctype html>
-<html lang="de"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url={target}"><link rel="canonical" href="https://canyon-explore-tours.com{target}"><title>Weiterleitung</title></head><body><p><a href="{target}">Zur neuen Seite</a></p></body></html>
-'''
-    for relative, target in redirects.items():
-        destination = ROOT / relative
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        destination.write_text(template.format(target=target), encoding="utf-8", newline="\n")
-
-
 if __name__ == "__main__":
     for html_path in sorted(ROOT.rglob("index.html")):
-        if any(part in {"jga-canyoning", "jga-ratgeber", "sicherheit-guides"} for part in html_path.parts):
-            continue
         update_html(html_path)
-    create_redirects()

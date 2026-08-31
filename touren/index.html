@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="de">
   <head>
     <meta charset="utf-8" />
@@ -16,7 +16,7 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="JGA Canyoning Touren vergleichen | Kobelache und Tessin" />
     <meta name="twitter:description" content="Merlins World, Kangaroo Jump, Kobelache Intensiv und Tessin vergleichen: Dauer, Schwierigkeit, Elemente, Voraussetzungen und Preise." />
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260828-111" />
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260831-126" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/logos/Canyon-Explore_Logo_light_blackBack_32.png" />
     <link rel="apple-touch-icon" sizes="256x256" href="../assets/logos/Canyon-Explore_Logo_light_blackBack_256.png" />
     <script type="application/ld+json">
@@ -29,6 +29,7 @@
             "name": "Canyon Explore Tours",
             "legalName": "Dr. Mario Zinßer Services",
             "url": "https://canyon-explore-tours.com/",
+            "areaServed": [{ "@type": "Place", "name": "Kobelache bei Dornbirn" }, { "@type": "City", "name": "Dornbirn" }, { "@type": "AdministrativeArea", "name": "Vorarlberg" }],
             "email": "info@canyon-explore-tours.com",
             "telephone": "+4916097939577",
             "logo": "https://canyon-explore-tours.com/assets/logos/Canyon-Explore_Logo_light_blackBack_256.png",
@@ -72,7 +73,9 @@
         ]
       }
     </script>
-    <script src="/assets/js/site.js?v=20260828-41" defer></script>
+    <script src="/assets/js/site.js?v=20260831-45" defer></script>
+    <script src="/assets/js/touch-feedback.js?v=20260831-1" defer></script>
+    <script src="/assets/js/tour-view-transition.js?v=20260831-5" defer></script>
   </head>
   <body class="page-tours">
     <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -156,9 +159,10 @@
         </details>
       </div>
     </header>
+    <a class="mobile-parent-link" href="/">‹ Startseite</a>
     <main class="site-main" id="inhalt">
       <h1>Welche Canyoning-Tour passt zu eurem JGA?</h1>
-      <p>Unsere Schwierigkeitsskala ist eine eigene Orientierung und keine offizielle Norm: 2 von 5 ist ideal für Einsteiger und alle, die sich langsam ans Canyoning herantasten möchten, 3 von 5 für sportliche Einsteiger und 4 von 5 für sehr fitte Gruppen mit hoher Ausdauer.</p>
+      <p>Vergleicht unsere privaten JGA-Canyoning-Touren in der Kobelache bei Dornbirn direkt miteinander. Von Merlins World für den optimalen Einstieg bis zu Kobelache Intensiv für sehr fitte Gruppen findet ihr die Tour, die zu eurer Gruppe passt.</p>
       <h2>Direktvergleich</h2>
       <!-- tourvergleich:start -->
 <div class="tour-comparison">
@@ -166,19 +170,19 @@
     <div class="comparison-head-scroll">
       <div class="comparison-grid comparison-head-grid">
         <div class="plan-heading">
-          <img class="plan-image" src="/assets/fotos/editiert/abseilen_3-640.webp" width="640" height="360" alt="Abseilen bei Merlins World" loading="lazy" />
+          <a class="plan-image-link" href="/touren/merlins-world/" data-tour-transition="merlins-world"><img class="plan-image" src="/assets/fotos/editiert/abseilen_3-640.webp" width="640" height="360" alt="Abseilen bei Merlins World" loading="lazy" data-tour-transition-image /></a>
           <h3 id="tourvergleich-merlins-world">Merlins World</h3>
         </div>
         <div class="plan-heading">
-          <img class="plan-image" src="/assets/fotos/editiert/sprung_1-640.webp" width="640" height="360" alt="Sprung bei Kangaroo Jump" loading="lazy" />
+          <a class="plan-image-link" href="/touren/kangaroo-jump/" data-tour-transition="kangaroo-jump"><img class="plan-image" src="/assets/fotos/editiert/sprung_1-640.webp" width="640" height="360" alt="Sprung bei Kangaroo Jump" loading="lazy" data-tour-transition-image /></a>
           <h3 id="tourvergleich-kangaroo-jump">Kangaroo Jump</h3>
         </div>
         <div class="plan-heading">
-          <img class="plan-image" src="/assets/fotos/editiert/kangaroo_jump_2-640.webp" width="640" height="360" alt="Action bei Kobelache Intensiv" loading="lazy" />
+          <a class="plan-image-link" href="/touren/kobelache-intensiv/" data-tour-transition="kobelache-intensiv"><img class="plan-image" src="/assets/fotos/editiert/kangaroo_jump_2-640.webp" width="640" height="360" alt="Action bei Kobelache Intensiv" loading="lazy" data-tour-transition-image /></a>
           <h3 id="tourvergleich-kobelache-intensiv">Kobelache Intensiv</h3>
         </div>
         <div class="plan-heading">
-          <img class="plan-image" src="/assets/fotos/editiert/tessin_1-640.webp" width="640" height="360" alt="Canyoning im Tessin" loading="lazy" />
+          <a class="plan-image-link" href="/touren/canyoning-tessin/" data-tour-transition="canyoning-tessin"><img class="plan-image" src="/assets/fotos/editiert/wasserfall_zeigen-640.webp" width="640" height="360" alt="Wasserfall beim Canyoning im Tessin" loading="lazy" data-tour-transition-image /></a>
           <h3 id="tourvergleich-tessin">Tessin</h3>
         </div>
       </div>
@@ -187,19 +191,19 @@
   <div class="comparison-scroll" role="region" aria-label="Tourvergleich, horizontal scrollbar" tabindex="0">
     <div class="comparison-grid comparison-body-grid">
       <article class="tour-plan" aria-labelledby="tourvergleich-merlins-world">
-        <header><p><strong>Für Einsteiger.</strong> Optimaler Einstieg ins Canyoning mit abwechslungsreichen Elementen.</p><p class="plan-price"><strong>100 €</strong><span>pro Person</span></p><span class="plan-free">Braut/Bräutigam gratis ab 10 Zahlenden</span><a href="/touren/merlins-world/">Tour ansehen</a></header>
+        <header><p><strong>Für Einsteiger.</strong> Optimaler Einstieg ins Canyoning mit abwechslungsreichen Elementen.</p><p class="plan-price"><strong>105 €</strong><span>pro Person</span></p><span class="plan-free">Braut/Bräutigam gratis ab 10 Zahlenden</span><a href="/touren/merlins-world/" data-tour-transition-source="merlins-world">Tour ansehen</a></header>
         <dl><div><img src="/assets/icons/difficulty.png" width="96" height="96" alt="" /><div><dt>Schwierigkeit</dt><dd>2 von 5</dd></div></div><div><img src="/assets/icons/duration.png" width="96" height="96" alt="" /><div><dt>Dauer</dt><dd>ca. 4 Stunden</dd></div></div><div><img src="/assets/icons/abseilen.png" width="96" height="96" alt="" /><div><dt>Abseilen</dt><dd>bis 12 m</dd></div></div><div><img src="/assets/icons/jump.png" width="96" height="96" alt="" /><div><dt>Sprünge</dt><dd>bis 7 m</dd></div></div><div><img src="/assets/icons/slide.png" width="96" height="96" alt="" /><div><dt>Rutschen</dt><dd>bis 5 m</dd></div></div><div><img src="/assets/icons/swim.png" width="96" height="96" alt="" /><div><dt>Schwimmen</dt><dd>bis 10 m</dd></div></div></dl>
       </article>
       <article class="tour-plan" aria-labelledby="tourvergleich-kangaroo-jump">
-        <header><p><strong>Ausgewogen und sportlich.</strong> Die richtige Mischung aus Action und machbarer Herausforderung.</p><p class="plan-price"><strong>100 €</strong><span>pro Person</span></p><span class="plan-free">Braut/Bräutigam gratis ab 10 Zahlenden</span><a href="/touren/kangaroo-jump/">Tour ansehen</a></header>
+        <header><p><strong>Ausgewogen und sportlich.</strong> Die richtige Mischung aus Action und machbarer Herausforderung.</p><p class="plan-price"><strong>100 €</strong><span>pro Person</span></p><span class="plan-free">Braut/Bräutigam gratis ab 10 Zahlenden</span><a href="/touren/kangaroo-jump/" data-tour-transition-source="kangaroo-jump">Tour ansehen</a></header>
         <dl><div><img src="/assets/icons/difficulty.png" width="96" height="96" alt="" /><div><dt>Schwierigkeit</dt><dd>3 von 5</dd></div></div><div><img src="/assets/icons/duration.png" width="96" height="96" alt="" /><div><dt>Dauer</dt><dd>ca. 4 Stunden</dd></div></div><div><img src="/assets/icons/abseilen.png" width="96" height="96" alt="" /><div><dt>Abseilen</dt><dd>bis 20 m</dd></div></div><div><img src="/assets/icons/jump.png" width="96" height="96" alt="" /><div><dt>Sprünge</dt><dd>bis 10 m</dd></div></div><div><img src="/assets/icons/slide.png" width="96" height="96" alt="" /><div><dt>Rutschen</dt><dd>bis 6 m</dd></div></div><div><img src="/assets/icons/swim.png" width="96" height="96" alt="" /><div><dt>Schwimmen</dt><dd>bis 30 m</dd></div></div></dl>
       </article>
       <article class="tour-plan" aria-labelledby="tourvergleich-kobelache-intensiv">
-        <header><p><strong>Für sehr Sportliche.</strong> Die lange, konditionell fordernde Tour durch die Kobelache.</p><p class="plan-price"><strong>150 €</strong><span>pro Person</span></p><span class="plan-free">Braut/Bräutigam gratis ab 10 Zahlenden</span><a href="/touren/kobelache-intensiv/">Tour ansehen</a></header>
+        <header><p><strong>Für sehr Sportliche.</strong> Die lange, konditionell fordernde Tour durch die Kobelache.</p><p class="plan-price"><strong>150 €</strong><span>pro Person</span></p><span class="plan-free">Braut/Bräutigam gratis ab 10 Zahlenden</span><a href="/touren/kobelache-intensiv/" data-tour-transition-source="kobelache-intensiv">Tour ansehen</a></header>
         <dl><div><img src="/assets/icons/difficulty.png" width="96" height="96" alt="" /><div><dt>Schwierigkeit</dt><dd>4 von 5</dd></div></div><div><img src="/assets/icons/duration.png" width="96" height="96" alt="" /><div><dt>Dauer</dt><dd>ca. 5,5 Stunden</dd></div></div><div><img src="/assets/icons/abseilen.png" width="96" height="96" alt="" /><div><dt>Abseilen</dt><dd>bis 20 m</dd></div></div><div><img src="/assets/icons/jump.png" width="96" height="96" alt="" /><div><dt>Sprünge</dt><dd>bis 10 m</dd></div></div><div><img src="/assets/icons/slide.png" width="96" height="96" alt="" /><div><dt>Rutschen</dt><dd>bis 6 m</dd></div></div><div><img src="/assets/icons/swim.png" width="96" height="96" alt="" /><div><dt>Schwimmen</dt><dd>bis 30 m</dd></div></div></dl>
       </article>
       <article class="tour-plan" aria-labelledby="tourvergleich-tessin">
-        <header><p><strong>Individuelle Spezialtour.</strong> Für sehr ambitionierte Gruppen passend zur Schlucht geplant.</p><p class="plan-price"><strong>Auf Anfrage</strong></p><span class="plan-free">Braut/Bräutigam gratis ab 10 Zahlenden</span><a href="/touren/canyoning-tessin/">Tour ansehen</a></header>
+        <header><p><strong>Individuelle Spezialtour.</strong> Für sehr ambitionierte Gruppen passend zur Schlucht geplant.</p><p class="plan-price"><strong>Auf Anfrage</strong></p><span class="plan-free">Braut/Bräutigam gratis ab 10 Zahlenden</span><a href="/touren/canyoning-tessin/" data-tour-transition-source="canyoning-tessin">Tour ansehen</a></header>
         <dl><div><img src="/assets/icons/difficulty.png" width="96" height="96" alt="" /><div><dt>Schwierigkeit</dt><dd>4 von 5</dd></div></div><div><img src="/assets/icons/duration.png" width="96" height="96" alt="" /><div><dt>Dauer</dt><dd>je nach Tour</dd></div></div><div><img src="/assets/icons/abseilen.png" width="96" height="96" alt="" /><div><dt>Abseilen</dt><dd>bis 80 m</dd></div></div><div><img src="/assets/icons/jump.png" width="96" height="96" alt="" /><div><dt>Sprünge</dt><dd>bis 20 m</dd></div></div><div><img src="/assets/icons/slide.png" width="96" height="96" alt="" /><div><dt>Rutschen</dt><dd>bis 20 m</dd></div></div><div><img src="/assets/icons/swim.png" width="96" height="96" alt="" /><div><dt>Schwimmen</dt><dd>bis 50 m</dd></div></div></dl>
       </article>
     </div>
@@ -213,7 +217,7 @@
       </p>
       <section>
         <h2>Merlins World</h2>
-        <p><strong>2 von 5 · ca. 4 Stunden · 100 € p. P.</strong></p>
+        <p><strong>2 von 5 · ca. 4 Stunden · 105 € p. P.</strong></p>
         <p>Ideal für Einsteiger und alle, die sich langsam ans Canyoning herantasten möchten: natürliche Rutschen bis 5 Meter, Abseilen bis 12 Meter, Sprünge bis 7 Meter und kurze Schwimmstrecken bis 10 Meter.</p>
         <figure class="media-card">
         <picture><img src="/assets/fotos/editiert/merlins_world_2-960.webp" srcset="/assets/fotos/editiert/merlins_world_2-640.webp 640w, /assets/fotos/editiert/merlins_world_2-960.webp 960w, /assets/fotos/editiert/merlins_world_2-1440.webp 1440w" sizes="(max-width: 680px) calc(100vw - 32px), (max-width: 1220px) calc(100vw - 40px), 1180px" width="1440" height="1080" alt="Merlins World Canyoning in der Kobelache" loading="lazy" /></picture>
