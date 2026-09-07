@@ -244,7 +244,7 @@ textarea { resize: vertical; }
 .benefit-journey { display: block !important; margin-top: var(--space-section); touch-action: pan-y pinch-zoom; }
 .benefit-scroll-scene { position: sticky; top: var(--benefit-scene-top, 74px); height: var(--benefit-scene-height, calc(100dvh - 74px)); overflow: visible; pointer-events: none; }
 .benefit-scroll-scene > h2 { position: absolute; z-index: 2; top: var(--benefit-heading-top, 24px); left: 0; width: 100%; margin: 0; pointer-events: auto; }
-.benefit-scroll-area { position: relative; pointer-events: none; }
+.benefit-scroll-area { position: relative; overflow-anchor: none; pointer-events: none; }
 .benefit-scroll-stage { position: absolute; top: var(--benefit-stage-top, 220px); right: 0; left: 0; overflow: visible; clip-path: inset(-28px); pointer-events: none; }
 .benefit-track { display: flex; width: max-content; gap: 36px; will-change: transform; }
 .benefit-card { position: relative; display: grid; width: min(620px, calc(100vw - 64px)); min-width: min(620px, calc(100vw - 64px)); height: 326px; padding: 0 !important; grid-template-columns: 1fr 1fr; overflow: visible; border: 0; border-radius: 20px; background: #f0f2f3; box-shadow: 0 10px 26px rgba(32, 33, 36, .10); pointer-events: auto; }
@@ -279,7 +279,7 @@ textarea { resize: vertical; }
 .jga-overview-euro { display: grid; place-items: center; color: #3c4043; font-family: Arial, "Segoe UI", sans-serif; font-size: 36px; font-weight: 500; line-height: 1; }
 .jga-overview-item h3 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -.015em; line-height: 1.25; }
 .jga-overview-item p { margin: 7px 0 0; color: var(--muted); font-size: 14px; line-height: 1.48; }
-.google-reviews-grid { --reviews-stick-top: 92px; --review-gap: 48px; position: relative; width: min(100%, 760px); margin: var(--space-content) auto 0; }
+.google-reviews-grid { --reviews-stick-top: 92px; --review-gap: 48px; position: relative; width: min(100%, 760px); margin: var(--space-content) auto 0; overflow-anchor: none; }
 .review-stack-stage { position: sticky; top: var(--reviews-stick-top); overflow: visible; }
 .review-stack-item { position: absolute; z-index: var(--review-index, 1); top: 0; left: 0; width: 100%; will-change: transform; }
 .google-review { display: flex; min-height: 208px; padding: 22px; flex-direction: column; border: 1px solid #dadce0; border-radius: 12px; background: white; box-shadow: 0 4px 12px rgb(60 64 67 / .08); }

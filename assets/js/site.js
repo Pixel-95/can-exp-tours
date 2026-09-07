@@ -200,8 +200,10 @@ if (reviewList && reviewData) {
         stickTop,
         totalDistance: exitStart + exitDistance,
       };
-      stackStage.style.height = `${Math.ceil(stageHeight)}px`;
-      reviewList.style.height = `${Math.ceil(stageHeight + stackLayout.totalDistance)}px`;
+      const nextStageHeight = `${Math.ceil(stageHeight)}px`;
+      const nextListHeight = `${Math.ceil(stageHeight + stackLayout.totalDistance)}px`;
+      if (stackStage.style.height !== nextStageHeight) stackStage.style.height = nextStageHeight;
+      if (reviewList.style.height !== nextListHeight) reviewList.style.height = nextListHeight;
       updateReviewStack();
     };
 

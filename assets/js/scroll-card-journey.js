@@ -22,6 +22,11 @@ document.querySelectorAll("[data-card-journey]").forEach((journey) => {
   let scrollStart = 0;
   let scrollFrame = 0;
   let layoutFrame = 0;
+  let layoutWidth = 0;
+  let layoutMode = "";
+
+  const getLayoutWidth = () => Math.round(document.documentElement.clientWidth || window.innerWidth);
+  const getLayoutMode = () => (desktop.matches ? "desktop" : "mobile");
 
   const clearLayout = () => {
     scrollDistance = 0;
@@ -77,10 +82,26 @@ document.querySelectorAll("[data-card-journey]").forEach((journey) => {
     if (!scrollFrame) scrollFrame = window.requestAnimationFrame(updateTrack);
   };
 
-  const performLayout = () => {
+  const performLayout = ({ force = false } = {}) => {
     layoutFrame = 0;
-    clearLayout();
-    if (reducedMotion.matches) return;
+    if (reducedMotion.matches) {
+      clearLayout();
+      return;
+    }
+
+    const nextLayoutWidth = getLayoutWidth();
+    const nextLayoutMode = getLayoutMode();
+    if (!force && mobile.matches && nextLayoutWidth === layoutWidth && nextLayoutMode === layoutMode) return;
+
+    track.style.transform = "";
+    cards.forEach((card) => {
+      card.style.transform = "";
+      if (desktop.matches) card.style.removeProperty("height");
+    });
+    if (desktop.matches) {
+      stage.style.removeProperty("--benefit-stage-height");
+      stage.style.removeProperty("--benefit-image-height");
+    }
 
     const viewportHeight = Math.round(window.visualViewport?.height || window.innerHeight);
     const headerHeight = siteHeader?.offsetHeight || (mobile.matches ? 68 : 74);
@@ -128,19 +149,27 @@ document.querySelectorAll("[data-card-journey]").forEach((journey) => {
     scrollArea.style.height = `${Math.ceil(sceneHeight + scrollDistance)}px`;
 
     scrollStart = scrollArea.getBoundingClientRect().top + window.scrollY - headerHeight;
+    layoutWidth = nextLayoutWidth;
+    layoutMode = nextLayoutMode;
     updateTrack();
   };
 
-  const scheduleLayout = () => {
-    if (!layoutFrame) layoutFrame = window.requestAnimationFrame(performLayout);
+  const scheduleLayout = ({ force = false } = {}) => {
+    if (!layoutFrame) {
+      layoutFrame = window.requestAnimationFrame(() => performLayout({ force }));
+    }
+  };
+
+  const scheduleViewportLayout = () => {
+    if (mobile.matches && getLayoutWidth() === layoutWidth) return;
+    scheduleLayout();
   };
 
   window.addEventListener("scroll", scheduleTrackUpdate, { passive: true });
-  window.addEventListener("resize", scheduleLayout);
-  window.visualViewport?.addEventListener("resize", scheduleLayout);
-  desktop.addEventListener("change", scheduleLayout);
-  mobile.addEventListener("change", scheduleLayout);
-  reducedMotion.addEventListener("change", scheduleLayout);
-  window.addEventListener("load", scheduleLayout, { once: true });
-  scheduleLayout();
+  window.addEventListener("resize", scheduleViewportLayout);
+  window.visualViewport?.addEventListener("resize", scheduleViewportLayout);
+  desktop.addEventListener("change", () => scheduleLayout({ force: true }));
+  mobile.addEventListener("change", () => scheduleLayout({ force: true }));
+  reducedMotion.addEventListener("change", () => scheduleLayout({ force: true }));
+  scheduleLayout({ force: true });
 });
