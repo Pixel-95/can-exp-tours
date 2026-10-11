@@ -456,16 +456,16 @@ window.cetTrack = (eventName, parameters = {}) => {
 const analyticsBanner = document.createElement("aside");
 analyticsBanner.className = "analytics-consent";
 analyticsBanner.setAttribute("role", "dialog");
-analyticsBanner.setAttribute("aria-label", "Datenschutzeinstellungen");
+analyticsBanner.setAttribute("aria-label", "Cookie-Einstellungen");
 analyticsBanner.hidden = true;
 analyticsBanner.innerHTML = `
   <div>
-    <strong>Optionale Reichweitenmessung</strong>
-    <p>Mit eurer Zustimmung hilft uns Google Analytics zu verstehen, welche Seiten und Kontaktwege hilfreich sind. Ohne Zustimmung wird Analytics nicht geladen. <a href="/rechtliches/datenschutz/#google-analytics">Mehr erfahren</a></p>
+    <strong>Cookies auf dieser Website</strong>
+    <p>Wir verwenden optionale Cookies, um die Nutzung auf unserer Website zu verbessern. <a href="/rechtliches/datenschutz/#google-analytics">Mehr erfahren</a></p>
   </div>
   <div class="analytics-consent-actions">
     <button type="button" data-analytics-choice="denied">Ablehnen</button>
-    <button type="button" data-analytics-choice="granted">Zustimmen</button>
+    <button type="button" data-analytics-choice="granted">Akzeptieren</button>
   </div>
 `;
 document.body.append(analyticsBanner);
