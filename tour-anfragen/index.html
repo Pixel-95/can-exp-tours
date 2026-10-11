@@ -16,7 +16,7 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Private JGA Canyoning-Tour unverbindlich anfragen" />
     <meta name="twitter:description" content="Wunschtermin, Personenzahl und Tour angeben und eine vorbereitete Anfrage per WhatsApp oder E-Mail an Tanja und Mario senden." />
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260831-132" />
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261011-135" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/logos/Canyon-Explore_Logo_light_blackBack_32.png" />
     <link rel="apple-touch-icon" sizes="256x256" href="../assets/logos/Canyon-Explore_Logo_light_blackBack_256.png" />
     <script type="application/ld+json">
@@ -72,7 +72,7 @@
         ]
       }
     </script>
-    <script src="/assets/js/site.js?v=20260907-47" defer></script>
+    <script src="/assets/js/site.js?v=20261011-48" defer></script>
     <script src="/assets/js/touch-feedback.js?v=20260831-1" defer></script>
   </head>
   <body class="page-request">
@@ -211,10 +211,16 @@
           }
         });
         document.getElementById("whatsapp-anfrage").addEventListener("click", () => {
-          if (validateForm()) window.open("https://wa.me/4916097939577?text=" + encodeURIComponent(createMessage()), "_blank", "noopener,noreferrer");
+          if (validateForm()) {
+            window.cetTrack?.("generate_lead", { method: "whatsapp", tour: tourSelect.value });
+            window.open("https://wa.me/4916097939577?text=" + encodeURIComponent(createMessage()), "_blank", "noopener,noreferrer");
+          }
         });
         document.getElementById("email-anfrage").addEventListener("click", () => {
-          if (validateForm()) window.open("mailto:info@canyon-explore-tours.com?subject=" + encodeURIComponent("Anfrage private JGA Canyoning-Tour") + "&body=" + encodeURIComponent(createMessage()), "_blank", "noopener,noreferrer");
+          if (validateForm()) {
+            window.cetTrack?.("generate_lead", { method: "email", tour: tourSelect.value });
+            window.open("mailto:info@canyon-explore-tours.com?subject=" + encodeURIComponent("Anfrage private JGA Canyoning-Tour") + "&body=" + encodeURIComponent(createMessage()), "_blank", "noopener,noreferrer");
+          }
         });
       </script>
     </main>

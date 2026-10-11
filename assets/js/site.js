@@ -400,3 +400,133 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "Intersect
     revealObserver.observe(item);
   });
 }
+
+const ANALYTICS_MEASUREMENT_ID = "G-5N83VF96FK";
+const ANALYTICS_CONSENT_KEY = "cet-analytics-consent";
+let analyticsLoaded = false;
+
+const readAnalyticsConsent = () => {
+  try {
+    return window.localStorage.getItem(ANALYTICS_CONSENT_KEY);
+  } catch {
+    return null;
+  }
+};
+
+const writeAnalyticsConsent = (value) => {
+  try {
+    window.localStorage.setItem(ANALYTICS_CONSENT_KEY, value);
+  } catch {
+    // The current choice still applies for this page if storage is unavailable.
+  }
+};
+
+const loadAnalytics = () => {
+  if (analyticsLoaded) return;
+
+  analyticsLoaded = true;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer.push(arguments);
+  };
+  window.gtag("consent", "default", {
+    analytics_storage: "granted",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+  window.gtag("js", new Date());
+  window.gtag("config", ANALYTICS_MEASUREMENT_ID, {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+  });
+
+  const analyticsScript = document.createElement("script");
+  analyticsScript.async = true;
+  analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_MEASUREMENT_ID}`;
+  document.head.append(analyticsScript);
+};
+
+window.cetTrack = (eventName, parameters = {}) => {
+  if (readAnalyticsConsent() !== "granted") return;
+  loadAnalytics();
+  window.gtag("event", eventName, parameters);
+};
+
+const analyticsBanner = document.createElement("aside");
+analyticsBanner.className = "analytics-consent";
+analyticsBanner.setAttribute("role", "dialog");
+analyticsBanner.setAttribute("aria-label", "Datenschutzeinstellungen");
+analyticsBanner.hidden = true;
+analyticsBanner.innerHTML = `
+  <div>
+    <strong>Optionale Reichweitenmessung</strong>
+    <p>Mit eurer Zustimmung hilft uns Google Analytics zu verstehen, welche Seiten und Kontaktwege hilfreich sind. Ohne Zustimmung wird Analytics nicht geladen. <a href="/rechtliches/datenschutz/#google-analytics">Mehr erfahren</a></p>
+  </div>
+  <div class="analytics-consent-actions">
+    <button type="button" data-analytics-choice="denied">Ablehnen</button>
+    <button type="button" data-analytics-choice="granted">Zustimmen</button>
+  </div>
+`;
+document.body.append(analyticsBanner);
+
+const setAnalyticsConsent = (choice) => {
+  writeAnalyticsConsent(choice);
+  analyticsBanner.hidden = true;
+  if (choice === "granted") {
+    loadAnalytics();
+  } else if (analyticsLoaded) {
+    window.gtag("consent", "update", { analytics_storage: "denied" });
+    window.location.reload();
+  }
+};
+
+analyticsBanner.addEventListener("click", (event) => {
+  const button = event.target instanceof Element ? event.target.closest("[data-analytics-choice]") : null;
+  if (button) setAnalyticsConsent(button.dataset.analyticsChoice);
+});
+
+const privacyNavigation = document.querySelector('.site-footer nav[aria-label="Rechtliches"]');
+if (privacyNavigation) {
+  const analyticsSettingsButton = document.createElement("button");
+  analyticsSettingsButton.className = "footer-privacy-settings";
+  analyticsSettingsButton.type = "button";
+  analyticsSettingsButton.textContent = "Cookie-Einstellungen";
+  analyticsSettingsButton.addEventListener("click", () => {
+    analyticsBanner.hidden = false;
+    analyticsBanner.querySelector("button")?.focus();
+  });
+  privacyNavigation.append(analyticsSettingsButton);
+}
+
+const savedAnalyticsConsent = readAnalyticsConsent();
+if (savedAnalyticsConsent === "granted") loadAnalytics();
+else if (savedAnalyticsConsent !== "denied") analyticsBanner.hidden = false;
+
+const contactLocation = (element) => {
+  if (element.closest(".floating-whatsapp")) return "floating_button";
+  if (element.closest(".hero-actions")) return "hero";
+  if (element.closest(".site-footer")) return "footer";
+  if (element.closest(".site-header")) return "header";
+  return "content";
+};
+
+document.addEventListener("click", (event) => {
+  const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+  if (!link) return;
+
+  const href = link.getAttribute("href") || "";
+  const parameters = { cta_location: contactLocation(link) };
+  if (href.startsWith("https://wa.me/")) window.cetTrack("contact_whatsapp", parameters);
+  else if (href.startsWith("mailto:")) window.cetTrack("contact_email", parameters);
+  else if (href.startsWith("tel:")) window.cetTrack("contact_phone", parameters);
+  else if (new URL(link.href, window.location.origin).pathname === "/tour-anfragen/") {
+    window.cetTrack("request_cta_click", parameters);
+  }
+});
+
+const requestForm = document.querySelector("#tour-anfrage");
+if (requestForm) {
+  const trackRequestStart = () => window.cetTrack("request_form_start");
+  requestForm.addEventListener("focusin", trackRequestStart, { once: true });
+}
