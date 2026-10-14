@@ -5,10 +5,14 @@ category: faq
 language: de
 source_url: https://canyon-explore-tours.com/faq/
 source_path: faq/index.html
-content_updated: 2026-09-02
+content_updated: 2026-10-14
 ---
 
 # Häufige Fragen zum JGA-Canyoning
+
+## Welche Touren bietet Canyon Explore Tours an?
+
+Canyon Explore Tours bietet vier private Canyoning-Touren an: Merlins World für Einsteiger, Kangaroo Jump für die meisten sportlichen JGAs, Kobelache Intensiv für aktive Gruppen mit guter Ausdauer und eine individuell geplante Tessin-Tour für sehr ambitionierte Gruppen.
 
 ## Ist die Tour wirklich privat?
 
@@ -41,6 +45,10 @@ Nein. Beeinträchtigte Personen werden aus Sicherheitsgründen ausgeschlossen. D
 ## Welche Ausrüstung wird gestellt?
 
 Neoprenanzug, Neoprensocken, Helm, Canyoning-Gurt, technische Sicherheitsausrüstung und spezielle Canyoning-Schuhe.
+
+## Müssen wir eigene Schuhe mitbringen?
+
+Nein. Spezielle Canyoning-Schuhe mit geeignetem Profil werden gestellt und sind im Preis enthalten. Eigene Schuhe werden für die Tour nicht benötigt.
 
 ## Was müssen wir mitbringen?
 

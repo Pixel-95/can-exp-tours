@@ -4,17 +4,19 @@ Diese Fragen werden zuerst im Dify-Retrieval-Test und danach im veröffentlichte
 
 ## Tourauswahl und Preise
 
-1. Welche Tour empfehlt ihr für einen sportlichen JGA ohne Canyoning-Erfahrung?
+1. Welche Touren bietet ihr an?
+   - Erwartet: Merlins World, Kangaroo Jump, Kobelache Intensiv und Tessin mit kurzer Einordnung nennen.
+2. Welche Tour empfehlt ihr für einen sportlichen JGA ohne Canyoning-Erfahrung?
    - Erwartet: Kangaroo Jump, sichere Schwimmkenntnisse und passende Fitness nennen.
-2. Welche Tour ist am besten für Einsteiger?
+3. Welche Tour ist am besten für Einsteiger?
    - Erwartet: Merlins World.
-3. Was kostet Kangaroo Jump?
+4. Was kostet Kangaroo Jump?
    - Erwartet: 100 Euro pro Person.
-4. Wie lange dauert Kobelache Intensiv?
+5. Wie lange dauert Kobelache Intensiv?
    - Erwartet: ungefähr 5,5 Stunden Gesamtzeit.
-5. Welche Tour hat die höchsten Abseilstellen?
+6. Welche Tour hat die höchsten Abseilstellen?
    - Erwartet: Tessin, je nach Schlucht bis 80 Meter.
-6. Ist die Braut bei neun zahlenden Teilnehmern kostenlos?
+7. Ist die Braut bei neun zahlenden Teilnehmern kostenlos?
    - Erwartet: Nein, mindestens zehn andere Teilnehmer müssen zahlen.
 
 ## Ablauf und Leistungen

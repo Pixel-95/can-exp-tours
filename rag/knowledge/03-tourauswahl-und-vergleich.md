@@ -5,10 +5,21 @@ category: touren
 language: de
 source_url: https://canyon-explore-tours.com/touren/
 source_path: touren/index.html
-content_updated: 2026-08-27
+content_updated: 2026-10-14
 ---
 
 # Tourauswahl und Vergleich aller Canyoning-Touren
+
+## Angebotene Touren
+
+Canyon Explore Tours bietet vier private Canyoning-Touren an:
+
+- Merlins World ist der actionreiche, gut machbare Einstieg für Einsteiger und Gruppen, die sich langsam herantasten möchten.
+- Kangaroo Jump ist die Empfehlung für die meisten sportlichen JGAs und sportliche Einsteiger.
+- Kobelache Intensiv ist die längere, actionreiche Tour für aktive Gruppen mit guter Ausdauer.
+- Tessin ist eine individuell geplante Spezialtour für sehr ambitionierte Gruppen.
+
+Alle Touren sind ausschließlich für die eigene Gruppe. Welche Tour am besten passt, richtet sich nach den Voraussetzungen und Erwartungen der gesamten Gruppe.
 
 ## Vergleich
 

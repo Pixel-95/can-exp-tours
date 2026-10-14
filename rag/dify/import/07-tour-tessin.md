@@ -1,0 +1,7 @@
+Dokument: Canyoning Tessin. Thema: Tourdaten. Typische Fragen: Wie lange dauert  Was kostet  Wo ist der Treffpunkt für  Wie schwierig ist  Inhalt: - Schwierigkeit: 4 von 5 - Dauer: je nach ausgewählter Tour - Abseilen: bis 80 Meter - Sprünge: bis 20 Meter - Rutschen: bis 20 Meter - Schwimmen: bis 50 Meter - Preis: auf Anfrage Alle Angaben zu Elementen sind mögliche Maximalwerte und hängen von der ausgewählten Schlucht ab. Quelle: https://canyon-explore-tours.com/touren/canyoning-tessin/
+
+Dokument: Canyoning Tessin. Thema: Voraussetzungen.  Inhalt: Die Tour ist für sehr ambitionierte Gruppen vorgesehen. Gute Fitness, sichere Schwimmkenntnisse, Trittsicherheit, Konzentration und Teamgeist sind die Grundlage. Die passende Schlucht wird erst nach persönlicher Abstimmung ausgewählt. Quelle: https://canyon-explore-tours.com/touren/canyoning-tessin/
+
+Dokument: Canyoning Tessin. Thema: Planung.  Inhalt: Das Tessin ist keine Standardtour. Termin, Erwartungen, Gruppenerfahrung, Fitness, aktuelle Bedingungen, Preis und genauer Ablauf werden persönlich geklärt. Eine Verfügbarkeit oder bestimmte Schlucht kann nicht ohne diese Abstimmung bestätigt werden. Quelle: https://canyon-explore-tours.com/touren/canyoning-tessin/
+
+Dokument: Canyoning Tessin. Thema: Gratisaktion.  Inhalt: Wenn mindestens zehn andere Teilnehmer zahlen, kommt die Braut oder der Bräutigam kostenlos mit. Anfrage: https://canyon-explore-tours.com/tour-anfragen/?tour=Tessin Quelle: https://canyon-explore-tours.com/touren/canyoning-tessin/

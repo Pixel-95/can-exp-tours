@@ -1,0 +1,67 @@
+[
+  {
+    "question": "Welche Touren bietet ihr an?",
+    "must_match": ["Merlins World", "Kangaroo Jump", "Kobelache Intensiv", "Tessin"]
+  },
+  {
+    "question": "Welche Tour empfehlt ihr für einen sportlichen JGA ohne Canyoning-Erfahrung?",
+    "must_match": ["Kangaroo Jump", "Schwimm"]
+  },
+  {
+    "question": "Was kostet Kangaroo Jump?",
+    "must_match": ["100[\\s‑-]*(Euro|€)"]
+  },
+  {
+    "question": "Wie lange dauert Kobelache Intensiv?",
+    "must_match": ["5[,.]5\\s*Stunden"]
+  },
+  {
+    "question": "Welche Tour hat die höchsten Abseilstellen?",
+    "must_match": ["Tessin", "80\\s*(Meter|m)"]
+  },
+  {
+    "question": "Müssen wir eigene Schuhe mitbringen?",
+    "must_match": ["Canyoning[-‑]Schuhe", "(enthalten|gestellt|inklusive)"]
+  },
+  {
+    "question": "Müssen alle schwimmen können?",
+    "must_match": ["(Ja|erforderlich)", "Schwimm"]
+  },
+  {
+    "question": "Muss ich vom Zehn-Meter-Sprung springen?",
+    "must_match": ["(Nein|nicht)", "(optional|umgangen|umgehen)"]
+  },
+  {
+    "question": "Findet die Tour bei Regen statt?",
+    "must_match": ["Regen", "(Wasserstand|Gewitter|Guide)"]
+  },
+  {
+    "question": "Wann wird die Buchung verbindlich?",
+    "must_match": ["schriftlich", "10[\\s‑-]*(Prozent|%)", "Anzahlung"]
+  },
+  {
+    "question": "Was kostet eine Stornierung zehn Tage vorher?",
+    "must_match": ["50[\\s‑-]*(Prozent|%)"]
+  },
+  {
+    "question": "Ist der 17. Juni um 9 Uhr noch frei?",
+    "must_match": ["(anfrag|Verfügbarkeit|prüfen|bestätigen)"],
+    "must_not_match": ["(ist|wäre) (noch )?frei", "Termin ist verfügbar"]
+  },
+  {
+    "question": "Kann ich schwanger teilnehmen?",
+    "must_match": ["(persönlich|vertraulich)", "(ärztlich|Arzt)"]
+  },
+  {
+    "question": "Ist der Transfer zum Einstieg enthalten?",
+    "must_match": ["(Ja|enthalten|inklusive)", "Transfer"]
+  },
+  {
+    "question": "Wo treffen wir uns für die Kobelache?",
+    "must_match": ["Gütle", "Dornbirn"]
+  },
+  {
+    "question": "Wie erhalten wir Fotos und Videos?",
+    "must_match": ["privaten? Download[-‑]Link"]
+  }
+]
