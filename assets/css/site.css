@@ -380,6 +380,18 @@ textarea { resize: vertical; }
 .floating-whatsapp { position: fixed; z-index: 45; right: 22px; bottom: 20px; display: inline-flex; min-height: 52px; padding: 0 22px; align-items: center; gap: 9px; border: 0; border-radius: 999px; color: white; background: var(--accent); filter: drop-shadow(0 12px 18px rgb(32 33 36 / .36)); font-size: 14px; font-weight: 700; text-decoration: none; }
 .floating-whatsapp::before { width: 20px; height: 20px; flex: 0 0 20px; content: ""; background: url("/assets/icons/whatsapp.png") center / contain no-repeat; }
 .floating-whatsapp:hover { color: white; background: var(--accent-dark); }
+.floating-chat-toggle { position: fixed; z-index: 45; right: 22px; bottom: 84px; display: inline-flex; min-height: 52px; padding: 0 22px; align-items: center; gap: 9px; border: 1px solid #dadce0; border-radius: 999px; color: var(--ink); background: white; box-shadow: 0 3px 7px rgb(32 33 36 / .18), 0 16px 28px rgb(32 33 36 / .14), inset 0 1px 0 rgb(255 255 255 / .7); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
+.floating-chat-toggle::before { width: 20px; height: 20px; flex: 0 0 20px; content: ""; background: url("/assets/icons/chat.svg") center / contain no-repeat; }
+.floating-chat-toggle:hover,
+.floating-chat-toggle:focus-visible,
+.floating-chat-toggle:active { border-color: #bdc1c6; color: var(--ink); background: #f8f9fa; }
+.chat-dialog { position: fixed; z-index: 120; inset: auto 22px 150px auto; width: min(400px, calc(100% - 44px)); height: min(680px, calc(100dvh - 174px)); margin: 0; padding: 0; overflow: hidden; border: 1px solid #dadce0; border-radius: 24px; background: white; box-shadow: 0 8px 24px rgb(60 64 67 / .2), 0 24px 56px rgb(60 64 67 / .18); }
+.chat-dialog::backdrop { background: rgb(32 33 36 / .2); }
+.chat-dialog[open] { display: flex; flex-direction: column; }
+.chat-dialog-close { position: absolute; z-index: 1; top: 8px; right: 8px; display: inline-grid; width: 40px; height: 40px; padding: 0; place-items: center; border: 1px solid rgb(218 220 224 / .8); border-radius: 50%; color: var(--icon); background: rgb(255 255 255 / .94); box-shadow: 0 2px 8px rgb(32 33 36 / .16); font: inherit; font-size: 26px; font-weight: 300; line-height: 1; cursor: pointer; }
+.chat-dialog-close:hover,
+.chat-dialog-close:focus-visible { background: #f1f3f4; }
+.chat-dialog iframe { width: 100%; min-height: 0; flex: 1 1 auto; border: 0; background: white; }
 .hero-actions .hero-whatsapp { position: relative; isolation: isolate; overflow: hidden; gap: 9px; color: white; border: 0; background: transparent; box-shadow: none; transition: .3s; }
 .hero-actions .hero-whatsapp::before { width: 20px; height: 20px; flex: 0 0 20px; content: ""; background: url("/assets/icons/whatsapp.png") center / contain no-repeat; }
 .hero-actions .hero-whatsapp::after { position: absolute; z-index: -1; inset: 0; display: block; width: 200%; border-radius: 60px; content: ""; background: linear-gradient(89.58deg, #36dd75 49.9%, #25d366 50.14%, #20c55d 72.225%, #36dd75 99.775%); pointer-events: none; transform: translateX(-50%); transition: transform .5s; }
@@ -752,7 +764,9 @@ textarea { resize: vertical; }
   .tour-cta .hero-actions { justify-content: stretch; }
   .footer-shell { grid-template-columns: 1fr; gap: 34px; }
   .footer-shell > div:first-child { grid-column: auto; }
-  .floating-whatsapp { right: 12px; bottom: 12px; min-height: 48px; padding-inline: 18px; }
+  .floating-whatsapp { right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); min-height: 48px; padding-inline: 18px; }
+  .floating-chat-toggle { right: 12px; bottom: max(72px, calc(env(safe-area-inset-bottom) + 60px)); min-height: 48px; padding-inline: 18px; }
+  .chat-dialog { inset: auto 12px max(132px, calc(env(safe-area-inset-bottom) + 120px)) auto; width: calc(100% - 24px); height: calc(100dvh - max(156px, calc(env(safe-area-inset-bottom) + 144px))); border-radius: 20px; }
   .analytics-consent { right: 12px; bottom: 12px; width: calc(100% - 24px); padding: 20px; border-radius: 20px; }
   .analytics-consent-actions { display: grid; grid-template-columns: 1fr 1fr; }
 }

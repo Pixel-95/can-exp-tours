@@ -15,6 +15,7 @@
     ".mobile-subnav > summary",
     ".mobile-menu-panel nav > a",
     ".mobile-subnav a",
+    ".floating-chat-toggle",
     ".floating-whatsapp",
     ".plan-image-link",
     ".app-store-icons a",

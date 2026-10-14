@@ -401,6 +401,48 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "Intersect
   });
 }
 
+const floatingWhatsApp = document.querySelector(".floating-whatsapp");
+if (floatingWhatsApp && "HTMLDialogElement" in window) {
+  const chatToggle = document.createElement("button");
+  const chatDialog = document.createElement("dialog");
+
+  chatToggle.className = "floating-chat-toggle";
+  chatToggle.type = "button";
+  chatToggle.textContent = "Chat starten";
+  chatToggle.setAttribute("aria-haspopup", "dialog");
+  chatToggle.setAttribute("aria-controls", "dify-chat-dialog");
+
+  chatDialog.className = "chat-dialog";
+  chatDialog.id = "dify-chat-dialog";
+  chatDialog.setAttribute("aria-label", "Canyon Explore Tours Chat");
+  chatDialog.innerHTML = `
+    <button class="chat-dialog-close" type="button" aria-label="Chat schließen">&times;</button>
+    <iframe
+      title="Chat mit Canyon Explore Tours"
+      data-src="https://udify.app/chatbot/WnPIdLi1CLFKFtIw"
+      src="about:blank"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+    ></iframe>
+  `;
+
+  floatingWhatsApp.before(chatToggle);
+  document.body.append(chatDialog);
+
+  const openChat = () => {
+    const iframe = chatDialog.querySelector("iframe");
+    if (iframe && !iframe.dataset.loaded) {
+      iframe.src = iframe.dataset.src;
+      iframe.dataset.loaded = "true";
+    }
+    chatDialog.showModal();
+    window.cetTrack?.("chat_open", { cta_location: "floating_button" });
+  };
+
+  chatToggle.addEventListener("click", openChat);
+  chatDialog.querySelector(".chat-dialog-close")?.addEventListener("click", () => chatDialog.close());
+}
+
 const ANALYTICS_MEASUREMENT_ID = "G-5N83VF96FK";
 const ANALYTICS_CONSENT_KEY = "cet-analytics-consent";
 let analyticsLoaded = false;
