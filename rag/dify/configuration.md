@@ -60,6 +60,7 @@ Start -> Knowledge Retrieval -> LLM -> Answer
 - Die Nutzerfrage wird als User Message an den LLM-Node übergeben.
 - `LLM.text` wird im Answer-Node ausgegeben.
 - Gesprächsgedächtnis: fünf Nutzer-Assistent-Runden.
+- Quellenanzeige für Endkunden: deaktiviert. Die Wissensquellen bleiben intern für Retrieval und Fehlersuche erhalten.
 
 ## Produktive Anwendung
 
@@ -83,6 +84,6 @@ Abgeschlossen:
 
 Der Chatflow wurde über die Dify-Web-App und über `POST /v1/chat-messages` erfolgreich getestet. Der API-Test erkannte die richtige App, erstellte eine Konversation und beantwortete eine Preis- und Leistungsfrage aus der Wissensbasis korrekt.
 
-Nach der retrieval-optimierten Neuindexierung und Veröffentlichung von Version 4 wurden 16 zentrale End-to-End-Testfälle gegen die produktive App ausgeführt. Ergebnis: 16 von 16 erfolgreich.
+Nach der retrieval-optimierten Neuindexierung wurden 16 zentrale End-to-End-Testfälle gegen die produktive App ausgeführt. Ergebnis: 16 von 16 erfolgreich. In Version 5 wurden zusätzlich die Dify-Funktion `Zitate und Urheberangaben` und Quellenbelege in Modellantworten deaktiviert.
 
 Der exportierte DSL-Dateiname soll `chatflow.dsl.yml` lauten. Die Datei wird erst nach dem realen Export angelegt, nicht als ungültiger Platzhalter.

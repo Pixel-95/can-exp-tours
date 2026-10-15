@@ -26,6 +26,12 @@ function Get-EnvValue {
 $apiKey = Get-EnvValue -Name 'DIFY_API_KEY_APP'
 $headers = @{ Authorization = "Bearer $apiKey"; 'Content-Type' = 'application/json' }
 $testCases = Get-Content -Raw -Encoding UTF8 -LiteralPath $testCasesPath | ConvertFrom-Json
+$forbiddenSourcePatterns = @(
+    '(?i)\bQuelle(n|nangabe|nbeleg)?\s*:',
+    '(?i)\.md\b',
+    '(?i)\bDokumenttitel\b',
+    'https?://canyon-explore-tours\.com/(touren|faq|canyoning|guides-sicherheit|rechtliches)(/|\b)'
+)
 if (-not [string]::IsNullOrWhiteSpace($QuestionPattern)) {
     $testCases = @($testCases | Where-Object { $_.question -match $QuestionPattern })
     if ($testCases.Count -eq 0) {
@@ -70,6 +76,11 @@ foreach ($testCase in $testCases) {
     foreach ($pattern in $testCase.must_not_match) {
         if ($answer -match $pattern) {
             $failures.Add("unerwünscht: $pattern")
+        }
+    }
+    foreach ($pattern in $forbiddenSourcePatterns) {
+        if ($answer -match $pattern) {
+            $failures.Add("Quellenbeleg sichtbar: $pattern")
         }
     }
 

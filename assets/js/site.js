@@ -417,6 +417,9 @@ if (floatingWhatsApp && "HTMLDialogElement" in window) {
   chatDialog.setAttribute("aria-label", "Canyon Explore Tours Chat");
   chatDialog.innerHTML = `
     <button class="chat-dialog-close" type="button" aria-label="Chat schließen">&times;</button>
+    <div class="chat-dialog-loading" role="status" aria-live="polite">
+      Chat wird geladen&nbsp;&hellip;
+    </div>
     <iframe
       title="Chat mit Canyon Explore Tours"
       data-src="https://udify.app/chatbot/WnPIdLi1CLFKFtIw"
@@ -431,13 +434,24 @@ if (floatingWhatsApp && "HTMLDialogElement" in window) {
 
   const openChat = () => {
     const iframe = chatDialog.querySelector("iframe");
+    const loadingMessage = chatDialog.querySelector(".chat-dialog-loading");
     if (iframe && !iframe.dataset.loaded) {
+      iframe.dataset.loading = "true";
+      if (loadingMessage) loadingMessage.hidden = false;
       iframe.src = iframe.dataset.src;
       iframe.dataset.loaded = "true";
     }
     chatDialog.showModal();
     window.cetTrack?.("chat_open", { cta_location: "floating_button" });
   };
+
+  chatDialog.querySelector("iframe")?.addEventListener("load", (event) => {
+    if (event.currentTarget.dataset.loading !== "true") return;
+
+    delete event.currentTarget.dataset.loading;
+    const loadingMessage = chatDialog.querySelector(".chat-dialog-loading");
+    if (loadingMessage) loadingMessage.hidden = true;
+  });
 
   chatToggle.addEventListener("click", openChat);
   chatDialog.querySelector(".chat-dialog-close")?.addEventListener("click", () => chatDialog.close());
@@ -512,9 +526,29 @@ analyticsBanner.innerHTML = `
 `;
 document.body.append(analyticsBanner);
 
+const updateFloatingActionOffset = () => {
+  if (analyticsBanner.hidden) return;
+
+  const offset = window.innerHeight - analyticsBanner.getBoundingClientRect().top + 12;
+  document.body.style.setProperty("--analytics-consent-offset", `${offset}px`);
+};
+
+const setAnalyticsBannerVisibility = (isVisible) => {
+  analyticsBanner.hidden = !isVisible;
+  document.body.classList.toggle("has-analytics-consent", isVisible);
+
+  if (isVisible) updateFloatingActionOffset();
+  else document.body.style.removeProperty("--analytics-consent-offset");
+};
+
+if ("ResizeObserver" in window) {
+  new ResizeObserver(updateFloatingActionOffset).observe(analyticsBanner);
+}
+window.addEventListener("resize", updateFloatingActionOffset);
+
 const setAnalyticsConsent = (choice) => {
   writeAnalyticsConsent(choice);
-  analyticsBanner.hidden = true;
+  setAnalyticsBannerVisibility(false);
   if (choice === "granted") {
     loadAnalytics();
   } else if (analyticsLoaded) {
@@ -535,7 +569,7 @@ if (privacyNavigation) {
   analyticsSettingsButton.type = "button";
   analyticsSettingsButton.textContent = "Cookie-Einstellungen";
   analyticsSettingsButton.addEventListener("click", () => {
-    analyticsBanner.hidden = false;
+    setAnalyticsBannerVisibility(true);
     analyticsBanner.querySelector("button")?.focus();
   });
   privacyNavigation.append(analyticsSettingsButton);
@@ -543,7 +577,7 @@ if (privacyNavigation) {
 
 const savedAnalyticsConsent = readAnalyticsConsent();
 if (savedAnalyticsConsent === "granted") loadAnalytics();
-else if (savedAnalyticsConsent !== "denied") analyticsBanner.hidden = false;
+else if (savedAnalyticsConsent !== "denied") setAnalyticsBannerVisibility(true);
 
 const contactLocation = (element) => {
   if (element.closest(".floating-whatsapp")) return "floating_button";

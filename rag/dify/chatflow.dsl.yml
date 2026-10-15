@@ -56,7 +56,7 @@ workflow:
       number_limits: 3
     opening_statement: ''
     retriever_resource:
-      enabled: true
+      enabled: false
     sensitive_word_avoidance:
       enabled: false
     speech_to_text:
@@ -212,8 +212,9 @@ workflow:
             - Erwähne bei Tourdaten, dass Höhen und Strecken Maximalwerte sind, wenn
             dies für die Frage relevant ist.
 
-            - Nenne passende Quellseiten, wenn die abgerufenen Dokumente eine kanonische
-            URL enthalten.
+            - Gib keine Quellenbelege, Quellen-URLs, Dateinamen, Dokumenttitel oder
+            internen Referenzen aus. Kontakt- und Anfragelinks darfst du nur nennen,
+            wenn sie für die Antwort hilfreich sind.
 
 
             Übergabe an persönliche Ansprechpartner:
