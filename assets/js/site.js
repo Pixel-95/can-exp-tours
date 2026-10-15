@@ -432,6 +432,11 @@ if (floatingWhatsApp && "HTMLDialogElement" in window) {
   floatingWhatsApp.before(chatToggle);
   document.body.append(chatDialog);
 
+  const setPageScrollLocked = (isLocked) => {
+    document.documentElement.classList.toggle("chat-dialog-open", isLocked);
+    document.body.classList.toggle("chat-dialog-open", isLocked);
+  };
+
   const openChat = () => {
     const iframe = chatDialog.querySelector("iframe");
     const loadingMessage = chatDialog.querySelector(".chat-dialog-loading");
@@ -442,6 +447,7 @@ if (floatingWhatsApp && "HTMLDialogElement" in window) {
       iframe.dataset.loaded = "true";
     }
     chatDialog.showModal();
+    setPageScrollLocked(true);
     window.cetTrack?.("chat_open", { cta_location: "floating_button" });
   };
 
@@ -455,6 +461,7 @@ if (floatingWhatsApp && "HTMLDialogElement" in window) {
 
   chatToggle.addEventListener("click", openChat);
   chatDialog.querySelector(".chat-dialog-close")?.addEventListener("click", () => chatDialog.close());
+  chatDialog.addEventListener("close", () => setPageScrollLocked(false));
 }
 
 const ANALYTICS_MEASUREMENT_ID = "G-5N83VF96FK";
